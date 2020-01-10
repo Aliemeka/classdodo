@@ -26,6 +26,7 @@ class Question(models.Model):
 class Option(models.Model):
     option = models.CharField(max_length=120)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    is_answer = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.option

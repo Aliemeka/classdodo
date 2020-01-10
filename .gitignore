@@ -1,7 +1,9 @@
 env/
 .vscode/
 
+#migrations
 __pycache__/
 migrations/
 
+#database
 db.sqlite3

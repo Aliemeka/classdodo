@@ -15,7 +15,7 @@ class Teacher(models.Model):
     user = models.OneToOneField(AppUser, on_delete=models.CASCADE)
 
     def __unicode__(str):
-        return self.user.first_name + " " + self.user.last_name
+        return '%s %s' %(self.user.first_name, self.user.last_name)
 
 
 

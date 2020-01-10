@@ -119,5 +119,5 @@ STATIC_URL = '/static/'
 
 
 #AUTHENTICATION
-
+ACCOUNT_UNIQUE_EMAIL = True
 AUTH_USER_MODEL = 'account.AppUser'
