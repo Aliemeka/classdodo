@@ -25,11 +25,12 @@ INSTALLED_APPS = [
     #required api apps
     'rest_framework',
     'rest_framework.authtoken',
-    #'rest_auth',
+    'rest_auth',
 
     #project apps
-    'class',
-    'account'
+    'account',
+    'classroom',
+    'score'
 ]
 
 MIDDLEWARE = [
@@ -96,7 +97,12 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
 
@@ -120,4 +126,5 @@ STATIC_URL = '/static/'
 
 #AUTHENTICATION
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
 AUTH_USER_MODEL = 'account.AppUser'

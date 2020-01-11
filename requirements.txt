@@ -1,7 +1,9 @@
 asgiref==3.2.3
 Django==3.0.2
 django-rest-api==0.1.5
+django-rest-auth==0.9.5
 django-rest-framework==0.1.0
 djangorestframework==3.11.0
 pytz==2019.3
+six==1.13.0
 sqlparse==0.3.0

@@ -7,6 +7,9 @@ class Subject(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
 
     def __str__(self):
+        return '%s by %s' %(self.subject_name, self.teacher.user.get_full_name())
+    
+    def __unicode__(self):
         return self.subject_name
 
     class Meta:
@@ -21,7 +24,14 @@ class Question(models.Model):
 
     def __unicode__(self):
         return self.question
+    
+    def __str__(self):
+        return self.question
+    
 
+    class Meta:
+        verbose_name = ('question')
+        verbose_name_plural = ('questions')
 
 class Option(models.Model):
     option = models.CharField(max_length=120)
@@ -30,3 +40,10 @@ class Option(models.Model):
 
     def __unicode__(self):
         return self.option
+    
+    def __str__(self):
+        return self.option
+
+    class Meta:
+        verbose_name = ('answer')
+        verbose_name_plural = ('answers')
