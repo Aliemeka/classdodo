@@ -3,7 +3,6 @@ env/
 
 #migrations
 __pycache__/
-migrations/
 
 #database
 db.sqlite3
