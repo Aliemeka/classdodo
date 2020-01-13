@@ -14,6 +14,7 @@ class Subject(models.Model):
 
 class Test(models.Model):
     test_number = models.IntegerField()
+    test_title = models.CharField(max_length=20, default="")
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
 

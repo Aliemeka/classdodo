@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    background-color: #afbec2;
+}
+
+.navbar{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+nav ul li{
+    margin: 0;
+    padding: 1rem .8rem;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+nav ul li:hover{
+    background-color: #80ad8b;
+}
+
+nav ul li a{
+    color: #afbec2;
+}
+
+nav ul li a:hover{
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav ul li a.active{
+    color: #ffa500;
+}
+
+footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer a, .link{
+    color: #8bb1bb;
+}
+
+.card{
+    min-width: 98% !important;
+    height: 200px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.form-area-inner{
+    width: 100%;
+}
+
+.form-area{
+    position: relative;
+}
+
+.form-selector, .bam{
+    background-color: #d1e0e4;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.menu-btn{
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color: #efefef;
+    border: 1px #bfbfbf solid;
+    color: #aaaaaa;
+}
+
+.active .menu-btn{
+    border: 0;
+    background-color: #f8f8f8;
+    color: #ffa500;
+    font-weight: 600;
+}
+
+.breadcrumb > li + li:before { 
+    color: #CCCCCC; 
+    content: "/ "; 
+    padding: 0 5px; 
+} 
+
+.breadcrumb a{
+    color: #8bb1bb;
+}
+
+.breadcrumb a.active{
+    color: #f6b53c;
+}
+
+.card hr{
+    border: 1px;
+    border-top: #bedbe2 1px solid;
+    width: 100%;
+    margin: 4px 0 16px 0;
+}
+
+.round-nav{
+    color: #8bb1bb;
+    background-color: #CCCCCC;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.round-nav:hover{
+    background-color: #d1e0e4;
+    text-decoration: none;
+}
+
+@media(min-width: 780px){
+    .form-area-inner{
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-group{
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+}
