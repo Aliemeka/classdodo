@@ -20,8 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
 
     'account',
     'classroom',
@@ -69,6 +73,10 @@ DATABASES = {
     }
 }
 
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000'
+)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -109,4 +117,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+CSRF_COOKIE_NAME = 'csrftoken'
+
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = False
 AUTH_USER_MODEL = 'account.AppUser'
+
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'account.serializer.UserSerializer'
+}
+
+REST_AUTH_REGISTER_SERIALIZER = {
+    'REGISTER_SERIALIZER': ''
+}
