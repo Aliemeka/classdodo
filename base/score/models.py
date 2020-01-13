@@ -1,16 +1,16 @@
 from django.db import models
-from account.models import Student
+from account.models import AppUser
 from classroom.models import Subject, Test
 
 
 class Record(models.Model):
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    student = models.OneToOneField(AppUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s's record" %(student.user.first_name)
+        return "%s's record" %(student.first_name)
 
     def __unicode__(self):
-        return "%s's record" %(student.user.first_name)
+        return "%s's record" %(student.first_name)
 
 class Result(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
