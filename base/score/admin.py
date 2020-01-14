@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Record, Result, Test_score
 
-# Register your models here.
+admin.site.register(Record)
+admin.site.register(Result)
+admin.site.register(Test_score)

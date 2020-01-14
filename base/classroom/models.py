@@ -7,15 +7,15 @@ class Subject(models.Model):
     teacher = models.ForeignKey(AppUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.subject_name} by {self.teacher.get_fullname()}'
+        return f'{self.subject_name} by {self.teacher.get_full_name()}'
 
     def __unicode__(self):
-        return f'{self.subject_name} by {self.teacher.get_fullname()}'
+        return f'{self.subject_name} by {self.teacher.get_full_name()}'
 
 
 class Test(models.Model):
     test_title = models.CharField(max_length=20, default="")
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='tests')
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Choice(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
-    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='questions')
     options = models.ManyToManyField(Choice)
     answer = models.ForeignKey(Choice, on_delete=models.CASCADE, null=True, related_name='answer')
 

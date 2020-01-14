@@ -124,6 +124,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = False
 AUTH_USER_MODEL = 'account.AppUser'
 
+SITE_ID = 1
+
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'account.serializer.UserSerializer'
