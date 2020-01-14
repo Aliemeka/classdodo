@@ -18,6 +18,7 @@ class ResultSerializer(ModelSerializer):
     
     def get_test_scores(self, obj):
         test_scores = TestScoreSerializer(obj.test_scores.all(), many=True).data
+        return test_scores
 
 class RecordSerializer(ModelSerializer):
     results = serializers.SerializerMethodField()
@@ -28,3 +29,4 @@ class RecordSerializer(ModelSerializer):
 
     def get_results(self, obj):
         results = ResultSerializer(obj.results.all(), many=True).data
+        return results
