@@ -64,7 +64,7 @@ footer a, .link{
 
 .card{
     min-width: 98% !important;
-    height: 200px;
+    min-height: 200px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -155,5 +155,8 @@ footer a, .link{
         margin-left: auto;
         margin-right: auto;
         width: 100%;
+    }
+    .form-container{
+        width: 60%;
     }
 }
