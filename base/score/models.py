@@ -4,7 +4,7 @@ from classroom.models import Subject, Test
 
 
 class Record(models.Model):
-    student = models.OneToOneField(AppUser, on_delete=models.CASCADE)
+    student = models.OneToOneField(AppUser, on_delete=models.CASCADE, related_name='record')
 
     def __str__(self):
         return "%s's record" %(self.student.first_name)
