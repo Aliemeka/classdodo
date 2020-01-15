@@ -144,6 +144,23 @@ footer a, .link{
     text-decoration: none;
 }
 
+.card-image-container{
+    width: 70%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 50%;
+    border: 2px solid #80ad8b;
+}
+
+.results-row{
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.text-bold{
+    font-weight: 600;
+}
+
 @media(min-width: 780px){
     .form-area-inner{
         width: 85%;
