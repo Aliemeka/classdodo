@@ -1,5 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom'
+
 import Navbar from './containers/Navbar'
+import Main from './routes/Main'
+import Footer from './containers/Footer'
+
+
 
 import './App.css'
 
@@ -8,9 +14,11 @@ class App extends Component{
   render(){
     //console.log(this.state.todos)
     return (
-      <Fragment>
+      <BrowserRouter>
         <Navbar />
-      </Fragment>
+        <Main />
+        <Footer />
+      </BrowserRouter>
     )
   }
 }
