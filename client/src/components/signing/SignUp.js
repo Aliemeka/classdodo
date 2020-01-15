@@ -2,83 +2,83 @@ import React from 'react'
 
 const SignUp = () =>{
     return(
-        <main class="main-area pt-5 pb-5">
-        <h1 class="text-center">Sign-Up</h1>
-        <section class="form-area container bg-light">
+        <main className="main-area pt-5 pb-5">
+        <h1 className="text-center">Sign-Up</h1>
+        <section className="form-area container bg-light">
             
-            <div class="form-selector d-flex justify-content-center">
-               <div class="btn-group">
-                  <a href="#teacher-sign-up" class="active"><button class="btn btn-sm menu-btn p-1" type="menu">Sign-Up as Teacher</button></a>
-                  <a href="#student-sign-up"><button class="btn btn-sm menu-btn p-1" type="menu">Sign-Up as Student</button></a>
+            <div className="form-selector d-flex justify-content-center">
+               <div className="btn-group">
+                  <a href="#teacher-sign-up" className="active"><button className="btn btn-sm menu-btn p-1" type="menu">Sign-Up as Teacher</button></a>
+                  <a href="#student-sign-up"><button className="btn btn-sm menu-btn p-1" type="menu">Sign-Up as Student</button></a>
                </div>
             </div>
             
-            <form class="form-area-inner mt-4 pt-5">
+            <form className="form-area-inner mt-4 pt-5">
                 
-                <div class="form-horizontal p-3"> 
+                <div className="form-horizontal p-3"> 
                     
-                    <div class="form-group row"> 
-                        <label for="firstname" class="col-sm-2 control-label">First Name</label> 
-                        <div class="col-sm-10"> 
-                           <input type="text" class="form-control" id="firstname" placeholder="Enter First Name"/> 
+                    <div className="form-group row"> 
+                        <label htmlFor="firstname" className="col-sm-2 control-label">First Name</label> 
+                        <div className="col-sm-10"> 
+                           <input type="text" className="form-control" id="firstname" placeholder="Enter First Name"/> 
                         </div> 
                     </div> 
                     
-                    <div class="form-group row"> 
-                       <label for="lastname" class="col-sm-2 control-label">Last Name</label> 
-                       <div class="col-sm-10"> 
-                          <input type="text" class="form-control" id="lastname"  
+                    <div className="form-group row"> 
+                       <label htmlFor="lastname" className="col-sm-2 control-label">Last Name</label> 
+                       <div className="col-sm-10"> 
+                          <input type="text" className="form-control" id="lastname"  
                              placeholder="Enter Last Name"/> 
                        </div> 
                     </div> 
                     
-                    <div class="form-group row"> 
-                       <label for="email" class="col-sm-2 control-label">Email*</label> 
-                       <div class="col-sm-10"> 
-                          <input type="email" class="form-control" id="lastname"  
+                    <div className="form-group row"> 
+                       <label htmlFor="email" className="col-sm-2 control-label">Email*</label> 
+                       <div className="col-sm-10"> 
+                          <input type="email" className="form-control" id="email"  
                              placeholder="Enter a valid email" required/> 
                        </div> 
                     </div>
                      
-                    <div class="form-group row"> 
-                       <label for="email" class="col-sm-2 control-label">Email*</label> 
-                       <div class="col-sm-10"> 
-                          <input type="email" class="form-control" id="lastname"  
-                             placeholder="Enter a valid email" required/>
+                    <div className="form-group row"> 
+                       <label htmlFor="username" className="col-sm-2 control-label">Username*</label> 
+                       <div className="col-sm-10"> 
+                          <input type="username" className="form-control" id="username"  
+                             placeholder="Enter a valid username" required/>
                        </div> 
                     </div>
                     
-                    <div class="form-group row"> 
-                       <label for="password1" class="col-sm-2 control-label">Password*</label> 
-                       <div class="col-sm-10"> 
-                          <input type="password" class="form-control" id="password1"  
+                    <div className="form-group row"> 
+                       <label htmlFor="password1" className="col-sm-2 control-label">Password*</label> 
+                       <div className="col-sm-10"> 
+                          <input type="password" className="form-control" id="password1"  
                              placeholder="Enter a strong password" required/> 
                        </div> 
                     </div> 
                     
-                    <div class="form-group row"> 
-                       <label for="password2" class="col-sm-2 control-label">Confirm Password*</label> 
-                       <div class="col-sm-10"> 
-                          <input type="password" class="form-control" id="password2"  
+                    <div className="form-group row"> 
+                       <label htmlFor="password2" className="col-sm-2 control-label">Confirm Password*</label> 
+                       <div className="col-sm-10"> 
+                          <input type="password" className="form-control" id="password2"  
                              placeholder="Confirm Password"/> 
                        </div> 
                     </div> 
-                    <div class="form-group row">   
-                        <div class="checkbox"> 
+                    <div className="form-group row">   
+                        <div className="checkbox"> 
                            <label> 
                               <input type="checkbox"/> Remember me 
                            </label> 
                         </div> 
                     </div> 
-                    <div class="form-group"> 
-                       <div class="col-sm-offset-2 col-sm-10"> 
-                          <button type="submit" class="btn btn-dark">Sign up</button> 
+                    <div className="form-group"> 
+                       <div className="col-sm-offset-2 col-sm-10"> 
+                          <button type="submit" className="btn btn-dark">Sign up</button> 
                        </div> 
                     </div> 
                </div>  
             </form>
         </section>
-    </main>
+      </main>
     )
     
 }

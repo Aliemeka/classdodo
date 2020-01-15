@@ -144,6 +144,14 @@ footer a, .link{
     text-decoration: none;
 }
 
+.card .btn:hover, form .btn:hover{
+    color: #ffa500;
+    background-color: #777777;
+    transition: 200ms;
+    border-color: #f6b53c
+
+}
+
 @media(min-width: 780px){
     .form-area-inner{
         width: 85%;
