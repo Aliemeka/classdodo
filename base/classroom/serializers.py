@@ -25,7 +25,7 @@ class SubjectSerializer(ModelSerializer):
 
     class Meta:
         model = Subject
-        fields = ('subject_name', 'teacher', 'tests')
+        fields = ('id', 'subject_name', 'teacher', 'tests')
     
     def get_tests(self, obj):
         tests = TestSerializer(obj.tests.all(), many=True).data
