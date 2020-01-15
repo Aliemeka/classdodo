@@ -10,6 +10,7 @@ class Classes extends Component{
     componentDidMount(){
         axios.get('http://127.0.0.1:8000/classroom/').then(
             res =>{
+                console.log(res)
                 this.setState({ subjects : res.data })
             }
         )

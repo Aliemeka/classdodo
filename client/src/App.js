@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 import Navbar from './containers/Navbar'
 import Main from './routes/Main'
-import TestRoutes from './routes/TestRoutes'
 import Footer from './containers/Footer'
 
 
@@ -18,7 +17,6 @@ class App extends Component{
       <BrowserRouter>
         <Navbar />
         <Main />
-        <TestRoutes />
         <Footer />
       </BrowserRouter>
     )
