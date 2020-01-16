@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Subject from './Subject'
 
 const Subjects = ({ subjects }) =>{
@@ -19,7 +19,7 @@ const Subjects = ({ subjects }) =>{
         </div>
     )
 
-    return subjectlist
+    return <Fragment>{subjectlist}</Fragment>
 }
 
 export default Subjects

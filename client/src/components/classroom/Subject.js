@@ -14,6 +14,9 @@ export class Subject extends Component {
                                 <button className="btn btn-md btn-dark">Start</button>
                             </Link>
                         </p>
+                        <div className="d-flex subject-foot align-items-center">
+                            <p className="text-muted">By {subject.teacher} </p>
+                        </div>
                     </div>
                 </div>
             </Fragment>

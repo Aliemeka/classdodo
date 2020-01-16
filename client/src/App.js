@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Navbar from './containers/Navbar'
 import Main from './routes/Main'
@@ -15,12 +16,22 @@ class App extends Component{
     //console.log(this.state.todos)
     return (
       <BrowserRouter>
-        <Navbar />
-        <Main />
-        <Footer />
+        <Fragment {...this.props}>
+          <Navbar />
+          <Main />
+          <Footer />
+        </Fragment>
       </BrowserRouter>
     )
   }
+
 }
 
-export default App;
+
+const mapStateToProps = state =>{
+  return{
+    isAuthenticated: state.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(App);
