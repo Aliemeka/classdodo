@@ -37,11 +37,15 @@ nav ul li:hover{
     background-color: #80ad8b;
 }
 
-nav ul li a{
+span.inner-nav-link{
+    cursor: pointer;
+}
+
+nav ul li a, nav ul li > span.inner-nav-link{
     color: #afbec2;
 }
 
-nav ul li a:hover{
+nav ul li a:hover, nav ul li > span.inner-nav-link{
     color: inherit;
     text-decoration: none;
     font-weight: 600;

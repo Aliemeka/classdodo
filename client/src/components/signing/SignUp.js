@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import{ Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import * as actions from '../../store/actions/auth'
 
 class SignUp extends Component{
    handleSignUp = e =>{
@@ -11,15 +14,22 @@ class SignUp extends Component{
       const password1 = e.target.elements.password1.value
       const password2 = e.target.elements.password2.value
 
-      console.log(firstname, lastname, email, username, password1, password2)
+      this.props.onAuth(firstname, lastname, username, email, password1, password2)
 
       setTimeout(() => {
          this.props.history.push('/');
       }, 500);
    }
    render(){
+      let errorMessage = null;
+      if(this.props.error){
+         errorMessage =(
+            <p className="pt-1 pb-1 pl-4 pr-2 bg-danger text-light">{this.props.error.message}</p>
+         )
+      }
       return(
           <main className="main-area pt-5 pb-5">
+          {errorMessage}
           <h1 className="text-center">Sign-Up</h1>
           <section className="form-area container bg-light">
               
@@ -77,7 +87,7 @@ class SignUp extends Component{
                          <label htmlFor="password2" className="col-sm-2 control-label">Confirm Password*</label> 
                          <div className="col-sm-10"> 
                             <input type="password" className="form-control" name="password2"  
-                               placeholder="Confirm Password"/> 
+                               placeholder="Confirm your password"/> 
                          </div> 
                       </div> 
                       <div className="form-group row">   
@@ -102,4 +112,17 @@ class SignUp extends Component{
     
 }
 
-export default SignUp
+const mapStateToProps = state =>{
+   return{
+      loading: state.loading,
+      error: state.error
+   }
+}
+
+const mapDispatchToProps = dispatch =>{
+   return {
+      onAuth: (firstname, lastname, username, email, password1, password2) => dispatch(actions.authSignUp(firstname, lastname, username, email, password1, password2))
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
