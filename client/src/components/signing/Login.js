@@ -22,10 +22,10 @@ class Login extends Component{
                       <div className="form-horizontal p-3"> 
                       
                           <div className="form-group row"> 
-                             <label htmlFor="email" className="col-sm-2 control-label">Email*</label> 
+                             <label htmlFor="username" className="col-sm-2 control-label">Username*</label> 
                              <div className="col-sm-10"> 
-                                <input type="email" className="form-control" name="email"  
-                                   placeholder="Enter your email" required /> 
+                                <input type="username" className="form-control" name="username"  
+                                   placeholder="Enter your username" required /> 
                              </div> 
                           </div>
                           <div className="form-group row"> 
