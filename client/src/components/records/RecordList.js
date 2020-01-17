@@ -4,7 +4,7 @@ import Record from './Record'
 
 const RecordList = ({ records }) =>{
 
-    const recordList = records ? 
+    const recordList = records.length ? 
         records.map((record, id) =><Record key={id} record={record} />)
         : (
             <div className="d-flex justify-content-center 

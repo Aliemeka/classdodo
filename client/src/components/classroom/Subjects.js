@@ -3,8 +3,7 @@ import Subject from './Subject'
 
 const Subjects = ({ subjects }) =>{
 
-
-    const subjectlist = subjects ? (
+    const subjectlist = subjects.length ? (
         <div className="row justify-content-center">
             { subjects.map( (subject, id) =>(
                 <Subject key={id} subject={subject} />
