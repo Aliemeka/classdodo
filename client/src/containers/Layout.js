@@ -5,14 +5,16 @@ import Main from '../routes/Main'
 import Footer from './Footer'
 
 
-const Layout = () =>{
+const Layout = ({ isAuthenticated }) =>{
     return (
         <Fragment>
-          <Navbar />
+          <Navbar isAuthenticated={isAuthenticated}/>
           <Main />
           <Footer />
         </Fragment>
     )
 }
+
+
 
 export default Layout

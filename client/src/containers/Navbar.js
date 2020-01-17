@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import * as actions from '../store/actions/auth'
@@ -19,13 +19,15 @@ class Navbar extends Component{
                 </ul>
                 <ul className="nav-links-right">
                 {
-                    this.props.isAuthenticated ? 
-                        <li><span className="inner-nav-link" onClick={this.props.logout}>Log out</span>className="inner-nav-link"</li>
-                        :
+                    this.props.isAuthenticated ? (
+                        <li><span className="inner-nav-link" onClick={this.props.logout}>Log out</span>"</li>
+                    )
+                    : (
                         <Fragment>
                             <li><NavLink to="/sign-up">Sign-Up</NavLink></li>
                             <li><NavLink to="/log-in">Log-In</NavLink></li>
                         </Fragment>
+                    )
                 }
                     
                 </ul>
@@ -41,4 +43,4 @@ class Navbar extends Component{
     }
  }
  
- export default connect(null, mapDispatchToProps)(Navbar)
+ export default withRouter(connect(null, mapDispatchToProps)(Navbar))
