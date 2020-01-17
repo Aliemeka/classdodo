@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import AppUser
+from users.models import AppUser
 from classroom.models import Subject, Test
 
 

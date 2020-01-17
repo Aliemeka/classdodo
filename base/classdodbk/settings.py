@@ -22,13 +22,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'rest_auth.registration',
 
-    'account',
+    'users',
     'classroom',
     'score'
 ]
@@ -44,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'classdodoapp.urls'
+ROOT_URLCONF = 'classdodbk.urls'
 
 TEMPLATES = [
     {
@@ -62,7 +64,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'classdodoapp.wsgi.application'
+WSGI_APPLICATION = 'classdodbk.wsgi.application'
 
 
 # Database
@@ -122,15 +124,16 @@ CSRF_COOKIE_NAME = 'csrftoken'
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = False
-AUTH_USER_MODEL = 'account.AppUser'
+AUTH_USER_MODEL = 'users.AppUser'
 
 SITE_ID = 1
 
-
+'''
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'account.serializer.UserSerializer'
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer'
 }
 
 REST_AUTH_REGISTER_SERIALIZER = {
     'REGISTER_SERIALIZER': ''
 }
+'''
