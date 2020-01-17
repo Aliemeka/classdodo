@@ -24,11 +24,11 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
-    'rest_auth.registration',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
+    'rest_auth.registration',
 
     'users',
     'classroom',
@@ -122,7 +122,7 @@ STATIC_URL = '/static/'
 CSRF_COOKIE_NAME = 'csrftoken'
 
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = False
 AUTH_USER_MODEL = 'users.AppUser'
 
