@@ -20,7 +20,10 @@ class Navbar extends Component{
                 <ul className="nav-links-right">
                 {
                     this.props.isAuthenticated ? (
-                        <li><span className="inner-nav-link" onClick={this.props.logout}>Log out</span>"</li>
+                        <Fragment>
+                            <li><span className="inner-nav-link">{`Welcome ${this.props.first_name} ${this.props.last_name}`}</span></li>
+                            <li><span className="inner-nav-link" onClick={this.props.logout}>Log out</span></li>
+                        </Fragment>
                     )
                     : (
                         <Fragment>

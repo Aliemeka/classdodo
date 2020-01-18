@@ -50,12 +50,16 @@ export const authLogin = (username, password) =>{
             username: username,
             password: password
         }).then(res => {
-            const { key, username, is_student, is_teacher} = res.data
+            console.log(res.data)
+            const { key, user_type  } = res.data
             const user = {
                 token : key,
+                first_name: user_type.first_name,
+                last_name: user_type.last_name,
+                userId: res.data.user,
                 username,
-                is_student,
-                is_teacher,
+                is_student: user_type.is_student,
+                is_teacher: user_type.is_student,
                 expirationDate: new Date(new Date().getTime() + 7200 * 1000)
             }
             // const token = res.data.key;  //gets authentication key
@@ -88,6 +92,9 @@ export const authSignUp = (first_name, last_name, username, email, password1, pa
         .then(res => {
             const user = {
                 token: res.data.key,
+                first_name,
+                last_name,
+                userId: res.data.user,
                 username,
                 is_student,
                 is_teacher,
