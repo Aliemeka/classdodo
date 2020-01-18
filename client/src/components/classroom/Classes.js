@@ -8,12 +8,18 @@ class Classes extends Component{
     state = {
         subjects: []
     }
-    componentDidMount(){
-        axios.get('http://127.0.0.1:8000/classroom/').then(
-            res =>{
-                this.setState({ subjects : res.data })
+    componentWillReceiveProps(newProps){
+        if(newProps.token){
+            axios.default.headers = {
+                'Content-Type': 'application/json',
+                Authorization: newProps.token 
             }
-        )
+            axios.get('http://127.0.0.1:8000/classroom/').then(
+                res =>{
+                    this.setState({ subjects : res.data })
+                }
+            )
+        }
     }
     render(){
         const { subjects } = this.state
@@ -45,8 +51,9 @@ class Classes extends Component{
 
 const mapStateToProps = state =>{
     return{
-       loading: state.loading,
-       error: state.error
+        token: state.token,
+        loading: state.loading,
+        error: state.error
     }
  }
 

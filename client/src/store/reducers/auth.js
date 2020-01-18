@@ -11,13 +11,19 @@ const initialState = {
 const authStart = (state, action) =>{
     return updateObject(state, {
         error: null,
+        username: null,
+        is_student: null,
+        is_teacher: null,
         loading: true
     })
 }
 
 const authSuccess = (state, action) =>{
     return updateObject(state, {
-        token: action.token,
+        token: action.user.token,
+        username: action.user.username,
+        is_student: action.user.is_student,
+        is_teacher: action.user.is_teacher,
         error: null,
         loading: false
     })

@@ -4,8 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class AppUser(AbstractUser):
-    is_teacher = models.BooleanField(default=False)
-    is_student = models.BooleanField(default=False)
+    is_teacher = models.BooleanField()
+    is_student = models.BooleanField()
 
     def __str__(self):
         return '%s %s' %(self.first_name, self.last_name)

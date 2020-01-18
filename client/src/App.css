@@ -102,9 +102,10 @@ footer a, .link{
     background-color: #efefef;
     border: 1px #bfbfbf solid;
     color: #aaaaaa;
+    outline: none;
 }
 
-.active .menu-btn{
+.menu-btn.active{
     border: 0;
     background-color: #f8f8f8;
     color: #ffa500;

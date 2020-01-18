@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -129,12 +130,22 @@ AUTH_USER_MODEL = 'users.AppUser'
 
 SITE_ID = 1
 
-'''
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
+
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer'
 }
 
-REST_AUTH_REGISTER_SERIALIZER = {
-    'REGISTER_SERIALIZER': ''
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'users.serializers.CustomRegisterSerializer'
 }
-'''

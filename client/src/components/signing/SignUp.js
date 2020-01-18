@@ -5,6 +5,18 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/auth'
 
 class SignUp extends Component{
+   state ={
+      isStudent: false,
+   }
+
+   handleIsTeacher = () =>{
+      this.setState({ isStudent : false });
+   }
+
+   handleIsStudent = () =>{
+      this.setState({ isStudent : true });
+   }
+
    handleSignUp = e =>{
       e.preventDefault()
       const firstname = e.target.elements.firstname.value
@@ -13,14 +25,26 @@ class SignUp extends Component{
       const username = e.target.elements.username.value
       const password1 = e.target.elements.password1.value
       const password2 = e.target.elements.password2.value
+      const is_student = this.state.isStudent
+      const is_teacher = !is_student
 
-      this.props.onAuth(firstname, lastname, username, email, password1, password2)
+      this.props.onAuth(firstname, lastname, username, email, password1, password2, is_student, is_teacher)
+      console.log(is_student, is_teacher)
 
       setTimeout(() => {
          this.props.history.push('/');
       }, 500);
    }
    render(){
+      let toggleStudentButtonClass = '', toggleTeacherButttonClass = ''
+      let topHeading = 'Sign up as either a teacher or student'
+      if(this.state.isStudent){
+         toggleStudentButtonClass = 'active'
+         topHeading = 'Set up student account'
+      }else{
+         toggleTeacherButttonClass = 'active'
+         topHeading = 'Set up teacher account'
+      }
       let errorMessage = null;
       if(this.props.error){
          errorMessage =(
@@ -35,13 +59,15 @@ class SignUp extends Component{
               
               <div className="form-selector d-flex justify-content-center">
                  <div className="btn-group">
-                    <a href="#teacher-sign-up" className="active"><button className="btn btn-sm menu-btn p-1" type="menu">Sign-Up as Teacher</button></a>
-                    <a href="#student-sign-up"><button className="btn btn-sm menu-btn p-1" type="menu">Sign-Up as Student</button></a>
+                    <button className={`btn btn-sm menu-btn p-1 ${toggleTeacherButttonClass}`} 
+                           type="menu" onClick={this.handleIsTeacher}>Sign-Up as Teacher</button>
+                    <button className={`btn btn-sm menu-btn p-1 ${toggleStudentButtonClass}`} 
+                           type="menu" onClick={this.handleIsStudent}>Sign-Up as Student</button>
                  </div>
               </div>
               
               <form className="form-area-inner mt-4 pt-5" onSubmit={this.handleSignUp}>
-                  
+                  <h4 className="text-center">{topHeading}</h4>
                   <div className="form-horizontal p-3"> 
                       
                       <div className="form-group row"> 
@@ -121,7 +147,7 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch =>{
    return {
-      onAuth: (firstname, lastname, username, email, password1, password2) => dispatch(actions.authSignUp(firstname, lastname, username, email, password1, password2))
+      onAuth: (firstname, lastname, username, email, password1, password2, is_student, is_teacher) => dispatch(actions.authSignUp(firstname, lastname, username, email, password1, password2, is_student, is_teacher))
    }
 }
 

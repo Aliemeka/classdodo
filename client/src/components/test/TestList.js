@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import axios from 'axios'
 
@@ -7,15 +8,19 @@ export class TestList extends Component {
     state = {
         subject: {}
     }
-    
-    componentDidMount(){
-        console.log(this.props)
-        let id = this.props.match.params.subject_id
-        axios.get(`http://127.0.0.1:8000/classroom/${id}/`).then(res=>{
-                console.log(res)
-                this.setState({ subject: res.data })
+    componentWillReceiveProps(newProps){
+        if(newProps){
+            let id = newProps.match.params.subject_id
+            axios.default.headers = {
+                'Content-Type': 'application/json',
+                Authorization: newProps.token 
             }
-        )
+            axios.get(`http://127.0.0.1:8000/classroom/${id}/`).then(res=>{
+                    console.log(res)
+                    this.setState({ subject: res.data })
+                }
+            )
+        }
     }
 
     render() {
@@ -58,4 +63,12 @@ export class TestList extends Component {
     }
 }
 
-export default TestList
+const mapStateToProps = state =>{
+    return{
+        token: state.token,
+        loading: state.loading,
+        error: state.error
+    }
+ }
+
+ export default connect(mapStateToProps)(TestList)
