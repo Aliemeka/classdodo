@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import * as actions from '../../store/actions/subjects'
+import * as tActions from '../../store/actions/users'
+
 
 import Subjects from './Subjects'
 
@@ -25,15 +27,23 @@ class Classes extends Component{
     componentDidMount(){
         if(this.props.token !== null && this.props.token !== undefined){
             this.props.getSubjects(this.props.token)
+            this.props.getTeachers(this.props.token)
         }
     }
 
     componentWillUpdate(newProps){
         if(newProps.token !== this.props.token){
             if(newProps.token !== null && newProps.token !== undefined){
-                this.props.getSubjects(newProps.token)
+                this.props.getSubjects(newProps.token) 
+                this.props.getTeachers(newProps.token) 
             } 
         }
+        console.log(this.props.teachers)
+    }
+
+    handleTeacher = subjectTeacher =>{
+        const teacherArray = this.props.teachers.filter(teacher => teacher.id === subjectTeacher)
+        return `${teacherArray[0].first_name} ${teacherArray[0].last_name}`
     }
 
     render(){
@@ -58,7 +68,7 @@ class Classes extends Component{
                             </div>
                         </div>
                     :
-                        <Subjects subjects ={this.props.subjects}/>
+                        <Subjects subjects ={this.props.subjects} handleTeacher={this.handleTeacher}/>
                     }
                     </section>
                     </Fragment>
@@ -85,13 +95,15 @@ const mapStateToProps = state =>{
         token: state.auth.token,
         loading: state.subjects.loading,
         subjects: state.subjects.subjects,
-        isAuthenticated: state.auth.token
+        isAuthenticated: state.auth.token,
+        teachers: state.users.teachers
     }
  }
 
  const mapDispatchToProps = dispatch =>{
     return{
-        getSubjects: token => dispatch(actions.getSubjects(token))
+        getSubjects: token => dispatch(actions.getSubjects(token)),
+        getTeachers: token => dispatch(tActions.getTeachers(token))
     }
   }
 
