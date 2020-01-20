@@ -59,9 +59,9 @@ class SignUp extends Component{
               
               <div className="form-selector d-flex justify-content-center">
                  <div className="btn-group">
-                    <button className={`btn btn-sm menu-btn p-1 ${toggleTeacherButttonClass}`} 
+                    <button className={`btn btn-sm menu-btn p-2 ${toggleTeacherButttonClass}`} 
                            type="menu" onClick={this.handleIsTeacher}>Sign-Up as Teacher</button>
-                    <button className={`btn btn-sm menu-btn p-1 ${toggleStudentButtonClass}`} 
+                    <button className={`btn btn-sm menu-btn p-2 ${toggleStudentButtonClass}`} 
                            type="menu" onClick={this.handleIsStudent}>Sign-Up as Student</button>
                  </div>
               </div>
@@ -140,8 +140,7 @@ class SignUp extends Component{
 
 const mapStateToProps = state =>{
    return{
-      loading: state.loading,
-      error: state.error
+      error: state.auth.error
    }
 }
 

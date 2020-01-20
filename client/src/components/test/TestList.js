@@ -1,12 +1,13 @@
-import React, { Component, Fragment } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import axios from 'axios'
 
-export class TestList extends Component {
+export class TestList extends PureComponent {
     state = {
-        subject: {}
+        subject: {},
+        tests: {}
     }
     componentDidMount(){
         let id = this.props.match.params.subject_id
