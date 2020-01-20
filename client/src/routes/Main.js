@@ -9,6 +9,7 @@ import Login from '../components/signing/Login';
 import SignUp from '../components/signing/SignUp';
 
 import TestList from '../components/test/TestList'
+import TestMain from '../components/test/TestMain'
 
 
 const Main = () =>{
@@ -19,6 +20,7 @@ const Main = () =>{
             <Route exact path='/sign-up' component={SignUp}/>
             <Route exact path='/log-in' component={Login}/>
             <Route exact path='/:subject_id' component={TestList}/>
+            <Route exact path='/:subject_id/test/:test_id' component={TestMain}/>
             <Route exact path='/records/:record_id' component={Results}/>
         </Switch>
     )

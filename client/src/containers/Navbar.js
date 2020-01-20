@@ -5,6 +5,12 @@ import { connect } from 'react-redux'
 import * as actions from '../store/actions/auth'
 
 class Navbar extends Component{
+    handleLogOut = ()=>{
+        this.props.logout()
+        setTimeout(() => {
+            this.props.history.push('/');
+         }, 300);
+    }
     render(){
         return (
             <nav className="navbar container-fluid bg-dark">
@@ -22,7 +28,7 @@ class Navbar extends Component{
                     this.props.isAuthenticated ? (
                         <Fragment>
                             <li><span className="inner-nav-link">{`Welcome ${this.props.first_name} ${this.props.last_name}`}</span></li>
-                            <li><span className="inner-nav-link" onClick={this.props.logout}>Log out</span></li>
+                            <li><span className="inner-nav-link" onClick={this.handleLogOut}>Log out</span></li>
                         </Fragment>
                     )
                     : (

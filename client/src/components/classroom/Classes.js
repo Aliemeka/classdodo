@@ -10,19 +10,6 @@ import * as tActions from '../../store/actions/users'
 import Subjects from './Subjects'
 
 class Classes extends Component{
-    // componentWillReceiveProps(newProps){
-    //     if(newProps.token){
-    //         axios.default.headers = {
-    //             'Content-Type': 'application/json',
-    //             Authorization: newProps.token 
-    //         }
-    //         axios.get('http://127.0.0.1:8000/classroom/').then(
-    //             res =>{
-    //                 this.setState({ subjects : res.data })
-    //             }
-    //         )
-    //     }
-    // }
 
     componentDidMount(){
         if(this.props.token !== null && this.props.token !== undefined){
@@ -38,7 +25,6 @@ class Classes extends Component{
                 this.props.getTeachers(newProps.token) 
             } 
         }
-        console.log(this.props.teachers)
     }
 
     handleTeacher = subjectTeacher =>{

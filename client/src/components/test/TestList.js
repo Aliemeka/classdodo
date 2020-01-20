@@ -1,68 +1,99 @@
 import React, { PureComponent, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import * as actions from '../../store/actions/subjects'
+import Test from './Test'
 
-import axios from 'axios'
 
 export class TestList extends PureComponent {
-    state = {
-        subject: {},
-        tests: {}
-    }
+
     componentDidMount(){
         let id = this.props.match.params.subject_id
-        axios.get(`http://127.0.0.1:8000/classroom/${id}/`).then(res=>{
-                console.log(res)
-                this.setState({ subject: res.data })
-            }
-        )
+        if(this.props.token !== null && this.props.token !== undefined){
+            this.props.getSubjectTests(this.props.token, id)
+        }
     }
 
+    componentWillUpdate(newProps){
+        if(newProps.token !== this.props.token){
+            if(newProps.token !== null && newProps.token !== undefined){
+                newProps.getSubjectTests(newProps.token, this.props.match.params.subject_id) 
+            } 
+        }
+    }
+
+
     render() {
-        const  subject = this.state.subject ? (
-            <Fragment>
+
+        return(
+            <Fragment>{ this.props.loading ?
+            <Fragment> 
                 <ol className="breadcrumb">
                     <li><NavLink to="/">Dashboard</NavLink></li>
-                    <li><NavLink to={`${this.state.subject.id}`} className="active">{this.state.subject.subject_name}</NavLink></li>
+                    <li>...</li>
                 </ol>
-                <main className="main-area pt-3 pb-2">
-                    <h1 className="text-center">{this.state.subject.subject_name}</h1>
-                    <section className="courses-area container full-width mt-4 mb-4">
-                        <div className="row justify-content-center">
 
-                            <div className="col-sm-6 col-md-4 col-lg-3 p-1 mb-2">  
-                                <div className="card text-center d-flex">
-                                    <div className="bam pt-4"></div>
-                                    <h2>Shapes</h2>
-                                    <p><button className="btn btn-md btn-dark">Attempt</button></p>
-                                </div>
+                <main className="main-area pt-3 pb-2">
+                    <section className="courses-area container d-flex justify-content-center full-width mt-4 mb-4">
+                        <div className="d-flex justify-content-center p-4">
+                            <div className="spinner-grow text-secondary">
+                                <span className="sr-only">Loading...</span>
                             </div>
-                            
+                            <div className="spinner-grow text-secondary">
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                            <div className="spinner-grow text-secondary">
+                                <span className="sr-only">Loading...</span>
+                            </div>
                         </div>
                     </section>
                 </main>
             </Fragment>
-            ) : (
+            : ( <Fragment>
+                {
+                    Object.keys(this.props.subject).length > 0 ?
                 <Fragment>
                     <ol className="breadcrumb">
                         <li><NavLink to="/"><i className="icon-arrow-left"></i>Go back to Dashboard</NavLink></li>
+                        <li><NavLink to={`/${this.props.subject.id}`}>{this.props.subject.subject_name}</NavLink></li>
                     </ol>
                     <main className="main-area pt-3 pb-2">
+                        <h1 className="text-center">{this.props.subject.subject_name}</h1>
                         <section className="courses-area container full-width mt-4 mb-4">
-                            <h1>No such subject</h1>
+                            <div className="row justify-content-center">
+
+                            {
+                               this.props.subject.tests.length ?
+                                <Fragment>{this.props.subject.tests.map((test, id) => <Test key={id} test={test} subId={this.props.subject.id}/>) }</Fragment> 
+                                : <h4 className='text-muted text-center'>No tests yet</h4>
+                            }
+                                
+                            </div>
                         </section>
-                    </main>  
+                    </main> 
+                </Fragment>
+                :
+                null
+                }
                 </Fragment>
             )
-        return <Fragment>{subject}</Fragment>
+            }</Fragment>
+        )
     }
 }
 
 const mapStateToProps = state =>{
     return{
-        loading: state.loading,
-        error: state.error
+        token: state.auth.token,
+        loading: state.subjects.loading,
+        subject: state.subjects.currentSubject
     }
  }
 
- export default connect(mapStateToProps)(TestList)
+ const mapDispatchToProps = dispatch =>{
+    return{
+        getSubjectTests: (token, id) => dispatch(actions.getSubjectTests(token, id)),
+    }
+  }
+
+ export default connect(mapStateToProps, mapDispatchToProps)(TestList)

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export class Subject extends Component {
@@ -34,4 +35,4 @@ const mapStateToProps = state =>{
     }
  }
 
-export default Subject
+export default connect(mapStateToProps)(Subject)
