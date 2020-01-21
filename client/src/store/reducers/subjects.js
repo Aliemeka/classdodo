@@ -5,6 +5,7 @@ import { updateObject } from '../utility'
 const initialState = {
     subjects: [],
     currentSubject: {},
+    currentTest: {},
     error: null,
     loading: false
 }
@@ -58,15 +59,46 @@ const getSubjectTestsFail = (state, action) =>{
 } 
 
 
+const getTestDetailsStart = (state, action) =>{
+    return updateObject(state, {
+        error: null,
+        currentTest: {},
+        loading: true
+    })
+}
+
+const getTestDetailsSuccess = (state, action) =>{
+    return updateObject(state, {
+        currentTest: action.test, 
+        error: null,
+        loading: false
+    })
+} 
+
+
+const getTestDetailsFail = (state, action) =>{
+    return updateObject(state, {
+        error: action.error,
+        loading: false
+    })
+} 
+
+
 
 const subjectsReducer = (state=initialState, action) =>{
     switch (action.type) {
+        //All Subjects
         case actionTypes.GET_SUBJECTS_START: return getSubjectsStart(state, action);
         case actionTypes.GET_SUBJECTS_SUCCESS: return getSubjectsSuccess(state, action);
         case actionTypes.GET_SUBJECTS_FAIL: return getSubjectsFail(state, action);
+        //Subject details
         case actionTypes.GET_SUBJECT_TESTS_START: return getSubjectTestsStart(state, action);
         case actionTypes.GET_SUBJECT_TESTS_SUCCESS: return getSubjectTestsSuccess(state, action);
         case actionTypes.GET_SUBJECT_TESTS_FAIL: return getSubjectTestsFail(state, action);
+        //Test details
+        case actionTypes.GET_TEST_DETAILS_START: return getTestDetailsStart(state, action);
+        case actionTypes.GET_TEST_DETAILS_SUCCESS: return getTestDetailsSuccess(state, action);
+        case actionTypes.GET_TEST_DETAILS_FAIL: return getTestDetailsFail(state, action);
         default: return state;
     }
 }

@@ -27,10 +27,10 @@ class Classes extends Component{
         }
     }
 
-    handleTeacher = subjectTeacher =>{
-        const teacherArray = this.props.teachers.filter(teacher => teacher.id === subjectTeacher)
-        return `${teacherArray[0].first_name} ${teacherArray[0].last_name}`
-    }
+    // handleTeacher = subjectTeacher =>{
+    //     const teacherArray = this.props.teachers.filter(teacher => teacher.id === subjectTeacher)
+    //     return `${teacherArray[0].first_name} ${teacherArray[0].last_name}`
+    // }
 
     render(){
         
@@ -54,7 +54,7 @@ class Classes extends Component{
                             </div>
                         </div>
                     :
-                        <Subjects subjects ={this.props.subjects} handleTeacher={this.handleTeacher}/>
+                        <Subjects subjects ={this.props.subjects}/>
                     }
                     </section>
                     </Fragment>

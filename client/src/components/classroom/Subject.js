@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export class Subject extends Component {
 
     render() {
-        const { subject, handleTeacher } = this.props
+        const { subject} = this.props
         return (
             <Fragment>
                 <div className="col-sm-6 col-md-4 col-lg-3 p-1 mb-2">  
@@ -20,7 +20,7 @@ export class Subject extends Component {
                             <p className="text-muted">By { 
                                 this.props.loading ?
                                     <Fragment>...</Fragment> :
-                             <Fragment>{handleTeacher(subject.teacher)}</Fragment>}</p>
+                             <Fragment>{subject.teacher}</Fragment>}</p>
                         </div>
                     </div>
                 </div>

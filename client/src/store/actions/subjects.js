@@ -81,3 +81,46 @@ export const getSubjectTests = (token, id) =>{
     }
 }
 
+
+const getTestDetailsStart = () =>{
+    return {
+        type: actionTypes.GET_TEST_DETAILS_START
+    }
+}
+
+
+//Checks if getSubjectListentication was successful then gets the token
+const getTestDetailsSuccess = subject =>{
+    return {
+        type: actionTypes.GET_TEST_DETAILS_SUCCESS,
+        subject
+    }
+}
+
+//Checks if there is an error in authentication
+const getTestDetailsFail = error =>{
+    return {
+        type: actionTypes.GET_TEST_DETAILS_FAIL,
+        error
+    } 
+}
+
+
+export const getTestDetails = (token, subjectId, testId) =>{
+    return dispatch =>{
+        dispatch(getTestDetailsStart())
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`
+        }
+        axios.get(`http://127.0.0.1:8000/classroom/${subjectId}/`).then(res=>{
+            const tests = res.data.tests;
+            const test = tests[testId-1]
+            console.log(test)
+            dispatch(getTestDetailsSuccess(test))
+        }).catch(err=>{
+            dispatch(getTestDetailsFail(err))
+        })
+    }
+}
+

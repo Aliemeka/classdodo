@@ -34,6 +34,7 @@ class Choice(models.Model):
 
 class Question(models.Model):
     question = models.TextField()
+    order = models.SmallIntegerField()
     test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='questions')
     options = models.ManyToManyField(Choice)
     answer = models.ForeignKey(Choice, on_delete=models.CASCADE, null=True, related_name='answer')

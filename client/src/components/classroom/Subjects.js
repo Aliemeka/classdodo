@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react'
 import Subject from './Subject'
 
-const Subjects = ({ subjects, handleTeacher }) =>{
+const Subjects = ({ subjects }) =>{
 
     const subjectlist = subjects.length ? (
         <Fragment>
         <div className="row justify-content-center">
             { subjects.map( (subject, id) =>(
-                <Subject key={id} subject={subject} handleTeacher={handleTeacher}/>
+                <Subject key={id} subject={subject} />
             )) } 
         </div>
         </Fragment>

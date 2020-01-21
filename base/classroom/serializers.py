@@ -1,11 +1,19 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, StringRelatedField
 from rest_framework import serializers
 from .models import Subject, Question, Test
 
-class QuestionSererializer(ModelSerializer):
+
+class StringSerializers(StringRelatedField):
+    def to_internal_value(self, value):
+        return value
+
+class QuestionSerializer(ModelSerializer):
+    options = StringSerializers(many=True)
+    answer = StringSerializers(many=False)  
+   
     class Meta:
         model = Question
-        fields = '__all__'
+        fields = ('id', 'order', 'question', 'options', 'test', 'answer')
 
 
 class TestSerializer(ModelSerializer):
@@ -16,12 +24,13 @@ class TestSerializer(ModelSerializer):
         fields = ('id','test_title', 'subject', 'time_created', 'questions')
     
     def get_questions(self, obj):
-        questions = QuestionSererializer(obj.questions.all(), many=True).data
+        questions = QuestionSerializer(obj.questions.all(), many=True).data
         return questions
 
 
 class SubjectSerializer(ModelSerializer):
     tests = serializers.SerializerMethodField()
+    teacher = StringSerializers(many=False) 
 
     class Meta:
         model = Subject
