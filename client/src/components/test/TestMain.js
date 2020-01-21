@@ -6,13 +6,21 @@ import Questions from './Questions'
 
 import * as actions from '../../store/actions/subjects'
 
+import Loader from '../../containers/Loader'
+
 export class TestMain extends Component {
+
+    state = {
+        order: 1,
+        isDone: false
+    }
+
     componentDidMount(){
         let id = this.props.match.params.subject_id
-        let testId = this.props.match.params.test_id
+        let testOrder = this.props.match.params.test_id
         if(this.props.token !== null && this.props.token !== undefined){
             this.props.getSubjectTests(this.props.token, id);
-            this.props.getTest(this.props.token, id, testId)
+            this.props.getTest(this.props.token, id, testOrder)
 
         }
     }
@@ -26,54 +34,86 @@ export class TestMain extends Component {
         }
     }
 
+    handleCurrentQuestion = ( questions, order ) =>{
+        return questions[order-1]
+    }
+
+    getPrevQuestion = () =>{
+        let order = this.state.order
+        if(order > 1){
+            order -=1
+            this.setState({ order: order })
+        }
+    }
+
+    getNextQuestion = (questions) =>{
+        let order = this.state.order
+        if(order < questions.length){
+            order +=1
+            this.setState({ order: order })
+        }
+    }
+
     render() {
-        // const testId = this.props.match.params.test_id
-        // console.log(testId)
-        // const { tests } = this.props.subject
-        // const { test } = this.props.subject
+        let order = this.state.order
+        let done = this.state.isDone
         return (
             <Fragment>
             {
                 this.props.loading ? 
                 <main className="main-area pt-3 pb-2">
                 <section className="courses-area container d-flex justify-content-center full-width mt-4 mb-4">
-                        <div className="d-flex justify-content-center p-4">
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        <Loader />
                 </section>
                 </main>
                 :
             <Fragment>
-                <ol className="breadcrumb">
-                    <li><Link to="/">Classroom</Link></li>
-                    <li><Link to={`/${this.props.subject.id}`}>{this.props.subject.subject_name}</Link></li>
-                    <li><span className="active">Shapes test</span></li>
-                </ol>
-                <main className="main-area pt-3 pb-2">
-                    <h1 className="text-center">Shapes</h1>
-                    <section className="courses-area container full-width mt-4 mb-4">
-                        <div className="d-flex justify-content-center">
-                            <a href="/" className="round-nav"><i className="icon-arrow-left"></i></a>
-                            <h2 className="pr-2 pl-2">Question 1 out of 5</h2>
-                            <a href="/" className="round-nav"><i className="icon-arrow-right"></i></a>
-                        </div>
-                        <div className="row justify-content-center">
-                            <div className="col-md-8 col-sm-10 p-1 mb-2">
+                {
+                   this.props.test !== undefined ?
+                    <Fragment>
+                        <ol className="breadcrumb">
+                            <li><Link to="/">Classroom</Link></li>
+                            <li><Link to={`/${this.props.subject.id}`}>{this.props.subject.subject_name}</Link></li>
+                            <li><span className="active">{this.props.test.test_title}</span></li>
+                        </ol>
+                        <main className="main-area pt-3 pb-2">
+                        
+                            <h1 className="text-center">{this.props.test.test_title}</h1>
+                            <section className="courses-area container full-width mt-4 mb-4">
+                            <Fragment>
+                            {  this.props.test.questions!==undefined && this.props.test.questions !== null ?
+                                <div className="d-flex justify-content-center">
 
-                                <Questions/>
+                                    <button className="round-nav" onClick={this.getPrevQuestion}><i className="icon-arrow-left"></i></button>
+                                    <h3 className="pr-2 pl-2">Question {order} out of {this.props.test.questions.length}</h3>
+                                    <button className="round-nav" onClick={()=>this.getNextQuestion(this.props.test.questions)}><i className="icon-arrow-right"></i></button>
 
-                            </div>
-                        </div>
+
+                                </div>
+                                : null}
+                                </Fragment>
+
+                                <div className="row justify-content-center">
+                                    <div className="col-md-8 col-sm-10 p-1 mb-2">
+
+                                     {  this.props.test.questions!==undefined ?
+                                        this.props.test.questions.length > 0 ?
+                                        <Questions key={order}  order={order} questions={this.props.test.questions} 
+                                            handleCurrentQuestion={this.handleCurrentQuestion} done={done}/>:
+                                        <h4 className="text-center text-muted">Test is unavailable</h4>
+                                        : <h4 className="text-center text-muted">Test is unavailable</h4> }
+
+                                     </div>
+                                </div>
+                            </section>
+                        </main>
+                    </Fragment>
+                    :
+                    
+                    <section className="courses-area container d-flex justify-content-center full-width mt-4 mb-4">
+                        <Loader />
                     </section>
-                </main>
+                }
             </Fragment>
             }
             </Fragment>

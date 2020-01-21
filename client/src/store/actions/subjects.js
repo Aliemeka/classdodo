@@ -90,10 +90,10 @@ const getTestDetailsStart = () =>{
 
 
 //Checks if getSubjectListentication was successful then gets the token
-const getTestDetailsSuccess = subject =>{
+const getTestDetailsSuccess = test =>{
     return {
         type: actionTypes.GET_TEST_DETAILS_SUCCESS,
-        subject
+        test
     }
 }
 
@@ -106,7 +106,7 @@ const getTestDetailsFail = error =>{
 }
 
 
-export const getTestDetails = (token, subjectId, testId) =>{
+export const getTestDetails = (token, subjectId, testOrder) =>{
     return dispatch =>{
         dispatch(getTestDetailsStart())
         axios.defaults.headers = {
@@ -115,8 +115,7 @@ export const getTestDetails = (token, subjectId, testId) =>{
         }
         axios.get(`http://127.0.0.1:8000/classroom/${subjectId}/`).then(res=>{
             const tests = res.data.tests;
-            const test = tests[testId-1]
-            console.log(test)
+            const test = tests[testOrder-1]
             dispatch(getTestDetailsSuccess(test))
         }).catch(err=>{
             dispatch(getTestDetailsFail(err))

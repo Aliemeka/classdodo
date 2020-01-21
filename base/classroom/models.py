@@ -15,6 +15,7 @@ class Subject(models.Model):
 
 class Test(models.Model):
     test_title = models.CharField(max_length=20, default="")
+    order = models.IntegerField()
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='tests')
     time_created = models.DateTimeField(auto_now_add=True)
 

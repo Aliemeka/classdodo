@@ -58,7 +58,7 @@ export const authLogin = (username, password) =>{
                 userId: res.data.user,
                 username,
                 is_student: user_type.is_student,
-                is_teacher: user_type.is_student,
+                is_teacher: user_type.is_teacher,
                 expirationDate: new Date(new Date().getTime() + 7200 * 1000)
             }
             // const token = res.data.key;  //gets authentication key

@@ -18,7 +18,15 @@ class Navbar extends Component{
                     <li className="navlink"><NavLink to="/">Classroom</NavLink></li>
                     {
                         this.props.isAuthenticated ? 
-                            <li className="navlink"><NavLink to="/records">Record</NavLink></li> 
+                        <Fragment>
+                            <li className="navlink"><NavLink to="/records">Record</NavLink></li>
+                            <Fragment>
+                                {
+                                    this.props.is_teacher ?
+                                    <li className="navlink"><NavLink to="/records"><i className="icon-plus"></i> Add Subject</NavLink></li> : null
+                                }
+                            </Fragment>
+                        </Fragment>
                             :
                             <li className="navlink"><NavLink to="/about">About</NavLink></li> 
                     }    

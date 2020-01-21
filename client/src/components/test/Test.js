@@ -10,7 +10,7 @@ export class Test extends Component {
                     <div className="card text-center d-flex">
                         <div className="bam pt-4"></div>
                         <h2>{test.test_title}</h2>
-                        <Link to={`/${subId}/test/${test.id}`}><button className="btn btn-md btn-dark">Attempt</button></Link>
+                        <Link to={`/${subId}/test/${test.order}`}><button className="btn btn-md btn-dark">Attempt</button></Link>
                     </div>
                 </div>
             </Fragment>

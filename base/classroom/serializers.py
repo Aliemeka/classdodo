@@ -21,7 +21,7 @@ class TestSerializer(ModelSerializer):
 
     class Meta:
         model = Test
-        fields = ('id','test_title', 'subject', 'time_created', 'questions')
+        fields = ('id','test_title', 'order', 'subject', 'time_created', 'questions')
     
     def get_questions(self, obj):
         questions = QuestionSerializer(obj.questions.all(), many=True).data

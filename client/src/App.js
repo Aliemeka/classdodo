@@ -30,6 +30,7 @@ const mapStateToProps = state =>{
     isAuthenticated: state.auth.token !== null,
     first_name: state.auth.first_name,
     last_name: state.auth.last_name,
+    is_teacher: state.auth.is_teacher
   }
 }
 

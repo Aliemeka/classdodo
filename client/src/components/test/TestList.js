@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import * as actions from '../../store/actions/subjects'
 import Test from './Test'
 
+import Loader from '../../containers/Loader'
+
 
 export class TestList extends PureComponent {
 
@@ -35,17 +37,7 @@ export class TestList extends PureComponent {
 
                 <main className="main-area pt-3 pb-2">
                     <section className="courses-area container d-flex justify-content-center full-width mt-4 mb-4">
-                        <div className="d-flex justify-content-center p-4">
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        <Loader />
                     </section>
                 </main>
             </Fragment>

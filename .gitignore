@@ -1,6 +1,8 @@
 env/
 .vscode/
 
+.env
+
 #migrations
 __pycache__/
 

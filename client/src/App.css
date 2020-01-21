@@ -136,6 +136,7 @@ footer a, .link{
 .round-nav{
     color: #8bb1bb;
     background-color: #CCCCCC;
+    border: 0px;
     border-radius: 50%;
     height: 2rem;
     width: 2rem;
@@ -143,11 +144,15 @@ footer a, .link{
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    outline: none !important;
 }
 
-.round-nav:hover{
+
+.round-nav:hover, .round-nav:focus{
     background-color: #d1e0e4;
     text-decoration: none;
+    color: #ffa500;
+    outline: none;
 }
 
 .card .btn:hover, form .btn:hover{

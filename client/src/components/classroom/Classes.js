@@ -9,6 +9,8 @@ import * as tActions from '../../store/actions/users'
 
 import Subjects from './Subjects'
 
+import Loader from '../../containers/Loader'
+
 class Classes extends Component{
 
     componentDidMount(){
@@ -42,17 +44,7 @@ class Classes extends Component{
                     <h1 className="text-center">Your Dashboard</h1>
                     <section className="courses-area container full-width mt-4 mb-4">
                     {this.props.loading ?
-                        <div className="d-flex justify-content-center p-4">
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-secondary">
-                                <span className="sr-only">Loading...</span>
-                            </div>
-                        </div>
+                        <Loader />
                     :
                         <Subjects subjects ={this.props.subjects}/>
                     }
