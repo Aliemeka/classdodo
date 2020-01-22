@@ -36,6 +36,7 @@ export class AddTest extends Component {
                 <section className="form-area container bg-light pb-4">
                     <form className="mt-4 pt-5 pb-2 test-form" onSubmit={null}>
                         <TestForm />
+                        <button type="submit" className="btn btn-sm btn-dark">Save</button>
                     </form>
                 </section>
             </main>

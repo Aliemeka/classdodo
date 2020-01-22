@@ -8,7 +8,8 @@ import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-const composeType = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const composeType = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose ---only used in dev mode
+const composeType = compose
 
 const rootReducer = combineReducers({
     auth: authReducer,

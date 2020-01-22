@@ -178,6 +178,17 @@ footer a, .link{
     border: 2px solid #80ad8b;
 }
 
+.form-group{
+    flex-wrap: wrap;
+}
+
+hr.test-line{
+    border: 1px;
+    border-top: #64c9e2 1px solid;
+    width: 100%;
+    margin: 4px 0 16px 0;
+}
+
 @media(min-width: 780px){
     .form-area-inner{
         width: 85%;

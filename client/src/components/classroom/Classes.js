@@ -57,7 +57,7 @@ class Classes extends Component{
                             <div className="d-flex justify-content-center 
                                 text-muted align-items-center mt-5 mb-5">
                                 <h2><i className="icon-warning"></i></h2>
-                                <h3><Link to="/sign-up">Sign up </Link> or <Link to="/log-in">Login </Link> 
+                                <h3 className="pl-2"><Link to="/sign-up">Sign up </Link> or <Link to="/log-in">Login </Link> 
                                          to get started <i className="icon-login"></i></h3>
                             </div>
                         </section>
