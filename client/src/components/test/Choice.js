@@ -2,12 +2,20 @@ import React, { Component, Fragment } from 'react'
 
 class Choice extends Component {
     render() {
-        const { option } = this.props
+        const { option, qId, change, value } = this.props
         return (
             <Fragment>
-                <div className="radio"> 
-                    <label> 
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" />  {option}</label> 
+                <div className="radio" > 
+                    <label>{
+                        value===option ?
+                        <input type="radio" name='options' 
+                            value={value} 
+                            onChange={(e, q=qId)=>change(e, q)} checked/> :
+                        <input type="radio" name='options'
+                            value={option}
+                            onChange={(e, q=qId)=>change(e, q)}/>
+                    } 
+                    {'  '}{option}</label>
                 </div> 
             </Fragment>
         )

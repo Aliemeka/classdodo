@@ -12,7 +12,8 @@ export class TestMain extends Component {
 
     state = {
         order: 1,
-        isDone: false
+        isDone: false,
+        selected: {}
     }
 
     componentDidMount(){
@@ -38,6 +39,12 @@ export class TestMain extends Component {
         return questions[order-1]
     }
 
+    handleSelect = (e, qOrder) =>{
+        const selected = this.state.selected
+        selected[qOrder] = e.target.value
+        this.setState({ selected: selected })
+    }
+
     getPrevQuestion = () =>{
         let order = this.state.order
         if(order > 1){
@@ -57,6 +64,7 @@ export class TestMain extends Component {
     render() {
         let order = this.state.order
         let done = this.state.isDone
+        const selected = this.state.selected
         return (
             <Fragment>
             {
@@ -99,7 +107,8 @@ export class TestMain extends Component {
                                      {  this.props.test.questions!==undefined ?
                                         this.props.test.questions.length > 0 ?
                                         <Questions key={order}  order={order} questions={this.props.test.questions} 
-                                            handleCurrentQuestion={this.handleCurrentQuestion} done={done}/>:
+                                            handleCurrentQuestion={this.handleCurrentQuestion} done={done} 
+                                            change={this.handleSelect} selected={selected}/>:
                                         <h4 className="text-center text-muted">Test is unavailable</h4>
                                         : <h4 className="text-center text-muted">Test is unavailable</h4> }
 

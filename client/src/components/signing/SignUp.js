@@ -73,7 +73,7 @@ class SignUp extends Component{
                       <div className="form-group row"> 
                           <label htmlFor="firstname" className="col-sm-2 control-label">First Name</label> 
                           <div className="col-sm-10"> 
-                             <input type="text" className="form-control" name="firstname" placeholder="Enter First Name"/> 
+                             <input type="text" className="form-control" name="firstname" placeholder="Enter First Name" required/> 
                           </div> 
                       </div> 
                       
@@ -81,7 +81,7 @@ class SignUp extends Component{
                          <label htmlFor="lastname" className="col-sm-2 control-label">Last Name</label> 
                          <div className="col-sm-10"> 
                             <input type="text" className="form-control" name="lastname"  
-                               placeholder="Enter Last Name"/> 
+                               placeholder="Enter Last Name" required/> 
                          </div> 
                       </div> 
                       
@@ -113,7 +113,7 @@ class SignUp extends Component{
                          <label htmlFor="password2" className="col-sm-2 control-label">Confirm Password*</label> 
                          <div className="col-sm-10"> 
                             <input type="password" className="form-control" name="password2"  
-                               placeholder="Confirm your password"/> 
+                               placeholder="Confirm your password" required/> 
                          </div> 
                       </div> 
                       <div className="form-group row">   
