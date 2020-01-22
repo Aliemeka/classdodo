@@ -23,7 +23,7 @@ class Navbar extends Component{
                             <Fragment>
                                 {
                                     this.props.is_teacher ?
-                                    <li className="navlink"><NavLink to="/records"><i className="icon-plus"></i> Add Subject</NavLink></li> : null
+                                    <li className="navlink"><NavLink to="/add-subject"><i className="icon-plus"></i> Add Subject</NavLink></li> : null
                                 }
                             </Fragment>
                         </Fragment>

@@ -147,6 +147,13 @@ footer a, .link{
     outline: none !important;
 }
 
+.btn.btn-round{
+    border: 0px;
+    border-radius: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
 
 .round-nav:hover, .round-nav:focus{
     background-color: #d1e0e4;
