@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import TestForm from '../test/TestForm'
 
@@ -11,6 +12,21 @@ class CreateSubjects extends Component {
         testsCount: 0
     }
 
+    // componentDidMount(){
+    //     if(this.props.token !== null && this.props.token !== undefined){
+    //         this.props.getTeachers(this.props.token)
+    //     }
+    // }
+
+    // componentWillUpdate(newProps){
+    //     if(newProps.token !== this.props.token){
+    //         if(newProps.token !== null && newProps.token !== undefined){
+    //             this.props.getSubjects(newProps.token) 
+    //             this.props.getTeachers(newProps.token) 
+    //         } 
+    //     }
+    // }
+
     handleAddTest= () =>{
         const testsCount = this.state.testsCount
         this.setState({ testsCount: testsCount + 1})
@@ -21,18 +37,23 @@ class CreateSubjects extends Component {
         this.setState({ testsCount: testsCount - 1})
     }
 
-    handleAddQuestion = ()=>{
-        //
-    }
-
     handleSubmit = e =>{
         e.preventDefault();
+        const subject = {
+            subject_name: e.target.elements.subject_name.value,
+            teacher: this.props.teacher
+        }
+        console.log(subject)
     }
 
     // {errorMessage}
     render() {
         const testForms = []
         const testLength = this.state.testsCount
+        let addMessage =<p className='pb-1'>Add a test</p>
+        if(testLength>0){
+            addMessage = null
+        }
         for(let i=1; i<=testLength; i++){
             testForms.push(i)
         }
@@ -60,8 +81,9 @@ class CreateSubjects extends Component {
 
                             <div className="col-md-6">
                                 <div className="form-area-inner pt-5">
+                                {addMessage}
                                     {testForms.map(i => <TestForm key={i} handleDelete={this.handleDeleteTest}/>)}
-                                    <button type="button" className="btn btn-sm btn-dark" onClick={this.handleAddTest}>Add test <i className="icon-plus"></i></button>
+                                    <button type="button" className="btn btn-sm btn-success btn-round" onClick={this.handleAddTest}><i className="icon-plus"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -78,4 +100,13 @@ class CreateSubjects extends Component {
     }
 }
 
-export default CreateSubjects
+const mapStateToProps = state =>{
+    return{
+      token: state.auth.token !== null,
+      teacher: state.auth.userId
+    }
+  }
+  
+
+  
+  export default connect(mapStateToProps)(CreateSubjects);

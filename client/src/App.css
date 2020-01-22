@@ -147,11 +147,19 @@ footer a, .link{
     outline: none !important;
 }
 
-.btn.btn-round{
+.btn.btn-round, .btn.btn-round-sm{
     border: 0px;
     border-radius: 50%;
+}
+
+.btn.btn-round{
     height: 2.5rem;
     width: 2.5rem;
+}
+
+.btn.btn-round-sm{
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 
