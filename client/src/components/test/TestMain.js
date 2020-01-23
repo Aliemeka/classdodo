@@ -61,6 +61,11 @@ export class TestMain extends Component {
         }
     }
 
+    handleSubmit = e =>{
+        e.preventDefault()
+        this.setState({ isDone: true })
+    }
+
     render() {
         let order = this.state.order
         let done = this.state.isDone
@@ -108,7 +113,7 @@ export class TestMain extends Component {
                                         this.props.test.questions.length > 0 ?
                                         <Questions key={order}  order={order} questions={this.props.test.questions} 
                                             handleCurrentQuestion={this.handleCurrentQuestion} done={done} 
-                                            change={this.handleSelect} selected={selected}/>:
+                                            change={this.handleSelect} selected={selected} submitTest={this.handleSubmit}/>:
                                         <h4 className="text-center text-muted">Test is unavailable</h4>
                                         : <h4 className="text-center text-muted">Test is unavailable</h4> }
 

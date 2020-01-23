@@ -4,12 +4,21 @@ import { connect } from 'react-redux'
 
 import TestForm from '../test/TestForm'
 
-
 // import * as actions from '../../store/actions/subjects'
+
+
+/*
+ *
+ *  Component renders a form for a teacher to add subjects, test and questions
+ *
+ *  
+*/
 
 class CreateSubjects extends Component {
     state ={
-        testsCount: 0
+        testsCount: 0,
+        tests: [],
+        test_title: null
     }
 
     // componentDidMount(){
@@ -27,23 +36,43 @@ class CreateSubjects extends Component {
     //     }
     // }
 
+
+    handleTestTitle = e =>{
+        this.setState({
+            [e.target.id] : e.target.value
+        })
+    }
+
+    createTest = testItem =>{
+        testItem.order = this.state.testsCount
+        const tests = [...this.state.tests, testItem]
+        this.setState({ tests })
+        console.log(tests)
+    }
+
     handleAddTest= () =>{
-        const testsCount = this.state.testsCount
-        this.setState({ testsCount: testsCount + 1})
+        let testsCount = this.state.testsCount + 1
+        this.setState({ testsCount })
+        if(this.state.testsCount>=1){
+            const testItem = {}
+            testItem.test_title = this.state.test_title
+            this.createTest(testItem) 
+        }
     }
 
     handleDeleteTest = () =>{
         const testsCount = this.state.testsCount
         this.setState({ testsCount: testsCount - 1})
+        const tests = this.state.tests.filter(t => t.order !== testsCount);
+        this.setState({ tests })
     }
 
     handleSubmit = e =>{
         e.preventDefault();
-        const subject = {
-            subject_name: e.target.elements.subject_name.value,
-            teacher: this.props.teacher
+        const tests = this.state.tests
+        for(let i=0; i<=tests.length; i++){
+            // const questions = []
         }
-        console.log(subject)
     }
 
     // {errorMessage}
@@ -82,7 +111,8 @@ class CreateSubjects extends Component {
                             <div className="col-md-6">
                                 <div className="form-area-inner pt-5">
                                 {addMessage}
-                                    {testForms.map(i => <TestForm key={i} testOrder={i} handleDelete={this.handleDeleteTest}/>)}
+                                    {testForms.map(i => <TestForm key={i} testOrder={i} handleDelete={this.handleDeleteTest} 
+                                                            enterTitle={this.handleTestTitle}/>)}
                                     <button type="button" className="btn btn-sm btn-success btn-round" onClick={this.handleAddTest}><i className="icon-plus"></i></button>
                                 </div>
                             </div>
@@ -106,7 +136,6 @@ const mapStateToProps = state =>{
       teacher: state.auth.userId
     }
   }
-  
 
   
-  export default connect(mapStateToProps)(CreateSubjects);
+export default connect(mapStateToProps)(CreateSubjects);

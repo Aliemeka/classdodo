@@ -50,14 +50,14 @@ export class QuestionForm extends Component {
     }
     
     render() {
-        const { removeField } = this.props
+        const { removeField, order, id, test } = this.props
         return (
             <div className="mb-3 mt-1"> 
-                <label htmlFor="name">Question</label> 
-                <textarea className="form-control" rows="3" name="question"></textarea>
+                <label htmlFor="name">Question {order}</label> 
+                <textarea className="form-control" rows="3" name="question" id={id} test={test}></textarea>
                 <Fragment>
                     {this.state.options.map(option=><Option key={option.key} option={option.option} deleteOption={this.deleteOption}
-                                                        id={option.key} selectOption={this.handleAnswer} answer={this.state.answer}/>)}
+                                                  question={order} id={option.key} selectOption={this.handleAnswer} answer={this.state.answer}/>)}
                 </Fragment>
 
                 <div className='d-flex align-items-center p-1'>

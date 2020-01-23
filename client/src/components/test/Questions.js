@@ -3,7 +3,7 @@ import Choice from './Choice'
 
 export class Questions extends Component {
     render() {
-        const { order, questions, handleCurrentQuestion, done, change, selected } = this.props
+        const { order, questions, handleCurrentQuestion, done, change, selected, submitTest } = this.props
         let currentQuestion = handleCurrentQuestion(questions, order)
         let options = currentQuestion.options
         return (
@@ -15,14 +15,15 @@ export class Questions extends Component {
                         <Fragment>
                             <h4 className="text-center mt-4 pt-2 ml-1 mr-1" >{currentQuestion.question}</h4>
                             <hr/>
-                            <form className="form-container mb-2">
+                            <form className="form-container mb-2" onSubmit={submitTest}>
                                 {options.map((option, id)=> <Choice option={option} key={id} qId={currentQuestion.order}
                                                                     change={change} 
-                                                                    value={selected[currentQuestion.order] !== undefined && selected[currentQuestion.order] !== null ?
+                                                                    value={selected[currentQuestion.order] !== undefined 
+                                                                        && selected[currentQuestion.order] !== null ?
                                                                         selected[currentQuestion.order] : null}/>)}
                                 { 
                                     order === questions.length ?
-                                    <button className='btn btn-md btn-dark mt-2'>Submit</button> : null
+                                    <button className='btn btn-md btn-dark mt-2' type="submit">Submit</button> : null
                                 }
                             </form>
                         </Fragment>

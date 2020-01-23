@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export class Option extends Component {
     render() {
-        const { option, deleteOption, id, selectOption, answer } = this.props
+        const { option, deleteOption, id, selectOption, answer, question } = this.props
         const optionClass = answer === option ? 'answer' : null
         const isAnswer = answer === option ? <i className='text-muted icon-check'></i> : null
         return (
@@ -12,8 +12,8 @@ export class Option extends Component {
                 </div>
                 <div className="col-1 pl-1">
                     {
-                        answer === option ? <input type="radio" value={option} id={id} onChange={selectOption} checked/> :
-                        <input type="radio" value={option} id={id} onChange={selectOption}/>
+                        answer === option ? <input type="radio" question={question} value={option} id={id} onChange={selectOption} checked/> :
+                        <input type="radio" value={option} id={id} onChange={selectOption} question={question}/>
                     }
                 </div>
                 <div className="col-1 pl-1">
