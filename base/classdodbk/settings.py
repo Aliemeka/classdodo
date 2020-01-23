@@ -8,7 +8,7 @@ SECRET_KEY = 'd1b7sr^4aj1u2&bc0+mb-qumyk8n8v)o!4=e2t(&grty*7h3h!'
 
 DEBUG = True #Change to False to run in production
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
