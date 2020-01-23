@@ -1,49 +1,97 @@
 # CLASS DODO
-
 ClassDodo is an open source class management system that helps teachers monitor their student performance
-The application provides students with test questions for each subject. It is ideal for lesson teachers and form teachers
+The application provides students with test questions for each subject. It is ideal for lesson teachers and form teachers. It
+is developed to illustrate how to create an app using microservice archieture that scales.
 
-# Features
+## Architecture
+
+
+## Features
 * Classroom dashbord displaying different subjects with test
 * Teachers can sign up and, create new subjects and create multiple test for each project they've created
 * Students can login and attempt tests in which they are graded and recorded
 * The records of each students can be viewd to know their performance in certain subjects
 * The main administrator can view all the records and add or remove users
 
-# Requirements
+## Requirements
 **Python v>=3.5**
 **npm v>=6.4.1**
 **npm v>=6.4.1**
 **Python v>=3.5**
 
-# Class Dodo Backend
+## Class Dodo Backend
 Backend developed using Django and django-rest-framework. The backend is hosted on the Backend service on a Docker containers
 in Kubernetes clusters.
 
-## Dependencies
-### Main dependencies
-* [Django v3](https://docs.djangoproject.com/en/3.0/ "Django")
-* [Expressjs](https://expressjs.com/ "Expressjs")
-* [node-postgres](https://node-postgres.com/ "node-postgres")
-* [npm](https://www.npmjs.com/ "npm")
-* [nodemon](https://www.npmjs.com/package/nodemon "nodemon")
-* [nodejsonwebtoken](https://github.com/auth0/node-jsonwebtoken "node-jsonwebtoken")
+### Dependencies
+#### Main dependencies
+* [Django v3](https://docs.djangoproject.com/en/3.0/ "Django") for developing the backend
+* [django-rest-framework](https://www.django-rest-framework.org/ "django-rest-framework") for api configuration
+* [django-rest-auth](https://node-postgres.com/ "django-rest-auth") to enable token and session authentication
+* [django-allauth](https://www.npmjs.com/ "django-allauth") to allow custom user registration and authentication
+* [django-corsheaders](https://www.npmjs.com/package/nodemon "django-corsheaders") to allow the frontend access to api
 
 ### In development
-* 
+* In development mode, ensure to set <code>DEGUB=True</code> in <code>settings.py</code>
 
-## Installation 
-### on local machine
+### Installation 
+#### on local machine
 * Fork this project [here](https://github.com/Aliemeka/classdodo "here")
 * Clone this repository 
 * Navigate into the root folder
 * Open a terminal (bash preferably) from the folder
 * Run <code>virtualenv env</code> to ensure that depencies are up to date
 * Run <code>source env/Scripts/activate</code> for windows users or <code>source env/bin/activate</code> on Mac or Linux
-* Run <code>pip install runserver
+* Run <code>pip install -r requirements.txt</code> ***Ensure you set the environment on your IDE to use the virtual enviroment***
+* Run <code>python3 manage.py runserver</code>
 
-### on the internet
-* Click [here](# "here") to open the page
+
+## Class Dodo Frontend
+The client side for this application was
+
+Enter these command on the command line
+* <code>cd client</code>
+* <code>yarn build</code> or <code>npm run build</code>
+
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.
+The client is ready to be deployed!
+
+## Deployment on Google Kubernetes Engine
+The app using consist of two services; a backend service will contain the django app and serve as the api provider for the application
+
+
+
+### FRONTEND DEPLOYMENT
+* Make your image <code>DP=[YOUR_DOCKER_ID]/[NAME_YOUR_IMAGE:1.0]</code>
+* <code>docker run build</code>
+* Run the 
+docker run -d -p 80:80 $DP
+Login your docker account
+docker login --username=[YOUR_DOCKER_ID]
+docker push $DP
+Connecting to Google Cloud Platform
+Initialize the folder to be a gcloud repo
+gcloud init
+Login using
+gcloud login Or gcloud config auth login
+Choose a project
+gcloud config set project [PROJECT_ID]
+Pick a region
+gcloud config set compute/region [COMPUTE_REGION]
+Deploying on Kubernetes Engine
+Create a container cluster
+gcloud container clusters create [CLUSTER_NAME]
+Create a Kubernetes deployment image
+kubectl create deployment [DEPLOYMENT_NAME e.g test] --image $DP
+Expose your deployment
+kubectl expose deployment [DEPLOYMENT_IMAGE_NAME] --type LoadBalancer --port 80 --target-port 80
+To find the external IP address of your app
+kubectl get services
+Your Application should great
+:thumbs-up:
 
 ## Contribution
 When contributing to this repository, please first discuss the change you wish to make via issue,
@@ -58,53 +106,6 @@ Please note we have a code of conduct, please follow it in all your interactions
    variables, exposed ports, useful file locations and container parameters.
 3. Make all pull requests of new features to the **develop** branch so it can be project
 
-### Our Pledge
-In the interest of fostering an open and welcoming environment, we as
-contributors and maintainers pledge to making participation in our project and
-our community a harassment-free experience for everyone, regardless of age, body
-size, disability, ethnicity, gender identity and expression, level of experience,
-nationality, personal appearance, race, religion, or sexual identity and
-orientation.
-
-### Our Standards
-Examples of behavior that contributes to creating a positive environment
-include:
-
-* Using welcoming and inclusive language
-* Being respectful of differing viewpoints and experiences
-* Gracefully accepting constructive criticism
-* Focusing on what is best for the community
-* Showing empathy towards other community members
-
-Examples of unacceptable behavior by participants include:
-
-* The use of sexualized language or imagery and unwelcome sexual attention or
-advances
-* Trolling, insulting/derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or electronic
-  address, without explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
-  
-### Our Responsibilities
-Project maintainers are responsible for clarifying the standards of acceptable
-behavior and are expected to take appropriate and fair corrective action in
-response to any instances of unacceptable behavior.
-
-Project maintainers have the right and responsibility to remove, edit, or
-reject comments, commits, code, wiki edits, issues, and other contributions
-that are not aligned to this Code of Conduct, or to ban temporarily or
-permanently any contributor for other behaviors that they deem inappropriate,
-threatening, offensive, or harmful.
-  
-### Enforcement
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the project team at emekaallison4@gmail.com. All
-complaints will be reviewed and investigated and will result in a response that
-is deemed necessary and appropriate to the circumstances. The project team is
-obligated to maintain confidentiality with regard to the reporter of an incident.
-Further details of specific enforcement policies may be posted separately.
 
 
 ### Licensing

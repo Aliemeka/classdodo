@@ -1,12 +1,13 @@
 env/
 .vscode/
 
+# enviroment settings
 .env
 
-#migrations
+# migrations
 __pycache__/
 
-#database
+# database
 db.sqlite3
 
 # dependencies
