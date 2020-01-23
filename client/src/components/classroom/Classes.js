@@ -51,6 +51,14 @@ class Classes extends Component{
                     </section>
                     </Fragment>
                     :   
+
+                    <Fragment>
+                        { this.props.signing ?
+                            <Fragment>
+                                <h4 className="text-center">Signing in...</h4>
+                                <Loader />
+                            </Fragment>
+                        :
                         <Fragment>
                         <h1 className="text-center">Welcome to Class Dodo</h1>
                         <section className="courses-area container full-width mt-4 mb-4 bg-light p-5">
@@ -62,6 +70,8 @@ class Classes extends Component{
                             </div>
                         </section>
                         </Fragment>
+                        }
+                    </Fragment>
                 }
         </main>
         )
@@ -74,6 +84,7 @@ const mapStateToProps = state =>{
         loading: state.subjects.loading,
         subjects: state.subjects.subjects,
         isAuthenticated: state.auth.token,
+        signing: state.auth.loading,
         teachers: state.users.teachers
     }
  }

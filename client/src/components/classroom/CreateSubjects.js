@@ -82,7 +82,7 @@ class CreateSubjects extends Component {
                             <div className="col-md-6">
                                 <div className="form-area-inner pt-5">
                                 {addMessage}
-                                    {testForms.map(i => <TestForm key={i} handleDelete={this.handleDeleteTest}/>)}
+                                    {testForms.map(i => <TestForm key={i} testOrder={i} handleDelete={this.handleDeleteTest}/>)}
                                     <button type="button" className="btn btn-sm btn-success btn-round" onClick={this.handleAddTest}><i className="icon-plus"></i></button>
                                 </div>
                             </div>

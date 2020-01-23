@@ -11,11 +11,13 @@ export class TestForm extends Component {
     }
     removeField = () =>{
         const c = this.state.count
-        this.setState({ count: c-1 })
+        if( c > 1){
+            this.setState({ count: c-1 })
+        }
     }
     render() {
         const count = this.state.count
-        const { key, handleDelete } = this.props
+        const { testOrder, handleDelete } = this.props
         const questionForms = []
         for(let i=1; i<=count; i++){
             questionForms.push(i)
@@ -37,7 +39,7 @@ export class TestForm extends Component {
                         placeholder="Enter test title" required/> 
                     </div>
                 </div>
-                <Fragment>{questionForms.map(i =><QuestionForm key={parseFloat(`${i}.${key}`)} order={i} removeField={this.removeField}/>)}</Fragment>
+                <Fragment>{questionForms.map(i =><QuestionForm key={parseFloat(`${i}.${testOrder}`)} order={i} removeField={this.removeField}/>)}</Fragment>
                 <div className="form-group mb-1">
                      <button type="button" className="btn btn-sm btn-dark" title="add question" onClick={this.addField}> 
                         Add question <i className="icon-plus"></i></button>

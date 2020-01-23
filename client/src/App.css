@@ -162,7 +162,6 @@ footer a, .link{
     width: 1.5rem;
 }
 
-
 .round-nav:hover, .round-nav:focus{
     background-color: #d1e0e4;
     text-decoration: none;
@@ -184,6 +183,24 @@ footer a, .link{
     padding: 1rem;
     border-radius: 50%;
     border: 2px solid #80ad8b;
+}
+
+.option{
+    border: 1px 0 1px 0 solid #aaaaaa;
+    align-items: center;
+}
+
+.option:hover{
+    background-color: #efefef;
+    font-weight: 600;
+}
+
+.option.answer{
+    background-color: rgb(136, 245, 109);
+}
+
+.option-text{
+    width: 98%;
 }
 
 .form-group{
