@@ -13,14 +13,12 @@ export class QuestionForm extends Component {
     createNewOption = optionItem =>{
         //creates new option
         optionItem.key = this.state.optionId
-        console.log(this.state.optionId)
         const options = [...this.state.options, optionItem]
         this.setState({
           options: options
         })
         optionItem.key += 1
         this.setState({ optionId: optionItem.key })
-        console.log(this.state.optionId)
     }
 
     handleChange = e =>{
@@ -40,7 +38,6 @@ export class QuestionForm extends Component {
         let answer = this.state.answer
         answer = e.target.value
         this.setState({ answer: answer })
-        console.log(answer)
     }
 
     deleteOption = (key) =>{
