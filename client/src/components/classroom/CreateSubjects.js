@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import TestForm from '../test/TestForm'
 
-// import * as actions from '../../store/actions/subjects'
+import {createSubject} from '../../store/actions/subjects'
 
 
 /*
@@ -19,25 +19,11 @@ class CreateSubjects extends Component {
         testsCount: 0,
         tests: [],
         test_title: null,
-        
         test_Questions: [],
         questionInput: '',
         qCount: 1,
         options: [],
-        question: {
-            test: null,
-            //question: '',
-            //order: 1,
-            option: null,
-            answer: null,
-            options: []
-        },
-        optionCount: 1,
-        option: {
-            question: null, //question.question
-            option: null,
-            is_answer: false
-        }
+        optionCount: 1
     }
 
     // componentDidMount(){
@@ -54,7 +40,7 @@ class CreateSubjects extends Component {
     //         } 
     //     }
     // }
-
+    //Creates new option in state
     createOptions = optionItem =>{
         optionItem.id = this.state.optionCount
         optionItem.question = this.state.qCount
@@ -63,6 +49,7 @@ class CreateSubjects extends Component {
         this.setState({ options })
     }
 
+    //Marks an option that corresponds to the answer value as the answer
     makeAnswer = answer =>{
         const options = []
         const oldOptions = this.state.options
@@ -75,12 +62,14 @@ class CreateSubjects extends Component {
         this.setState({ options })
     }
 
+    //Trigger actions to add a new option
     addOption = option =>{
         const optionCount = this.state.optionCount
         this.setState({ optionCount: optionCount+1 })
         this.createOptions(option)
     }
 
+    //Removes a given option
     removeOption = () =>{
         const optionCount = this.state.optionCount
         this.setState({ optionCount: optionCount-1 })
@@ -89,6 +78,7 @@ class CreateSubjects extends Component {
         this.setState({ options })
     }
 
+    //Creates new question
     createQuestion = questionItem =>{
         questionItem.test = this.state.testsCount
         questionItem.id = this.state.qCount
@@ -97,6 +87,7 @@ class CreateSubjects extends Component {
         this.setState({ test_Questions })
     }
 
+    //Adds a question trigger
     addQuestionField = () =>{
         let qCount = this.state.qCount
         qCount += 1
@@ -108,6 +99,7 @@ class CreateSubjects extends Component {
         this.setState({ qCount })
     }
 
+    //deletes a question
     removeQuestionField = () =>{
         let qCount = this.state.qCount
         this.setState({ qCount: qCount-1 })
@@ -117,24 +109,28 @@ class CreateSubjects extends Component {
         this.setState({ options })
     }
 
+    //Checks the input on the question field
     handleQuestionInput = e =>{
         this.setState({
             [e.target.name] : e.target.value
         })
     }
 
+    //Checks for inputed test title
     handleTestTitle = e =>{
         this.setState({
             [e.target.id] : e.target.value
         })
     }
 
+    //Creates a new test
     createTest = testItem =>{
         testItem.order = this.state.testsCount
         const tests = [...this.state.tests, testItem]
         this.setState({ tests })
     }
 
+    //Triggers actions to add new test
     handleAddTest= () =>{
         let testsCount = this.state.testsCount + 1
         this.setState({ testsCount })
@@ -145,6 +141,7 @@ class CreateSubjects extends Component {
         }
     }
 
+    //Deletes a test
     handleDeleteTest = () =>{
         const testsCount = this.state.testsCount
         this.setState({ testsCount: testsCount - 1})
@@ -156,6 +153,7 @@ class CreateSubjects extends Component {
         this.setState({ options })
     }
 
+    //Submits inputted values on the form
     handleSubmit = e =>{
         e.preventDefault();
         const tests = []
@@ -189,7 +187,7 @@ class CreateSubjects extends Component {
             teacher: `${this.props.fn} ${this.props.ln}`,
             tests
         }
-        console.log(subject)
+        this.props.createSubject(this.props.token, subject)
     }
 
     // {errorMessage}
@@ -271,11 +269,17 @@ class CreateSubjects extends Component {
 
 const mapStateToProps = state =>{
     return{
-      token: state.auth.token !== null,
+      token: state.auth.token,
       fn: state.auth.first_name,
       ln: state.auth.last_name
     }
   }
 
+const mapDispatchToProps = dispatch =>{
+    return {
+        createSubject: (token, subject) => dispatch(createSubject(token, subject))
+    }
+}
+
   
-export default connect(mapStateToProps)(CreateSubjects);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSubjects);

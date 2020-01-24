@@ -34,6 +34,30 @@ const getSubjectsFail = (state, action) =>{
     })
 } 
 
+//Creates subject reducers
+const createSubjectStart = (state, action) =>{
+    return updateObject(state, {
+        error: null,
+        loading: true
+    })
+}
+
+const createSubjectSuccess = (state, action) =>{
+    return updateObject(state, {
+        error: null,
+        loading: false
+    })
+} 
+
+
+const createSubjectFail = (state, action) =>{
+    return updateObject(state, {
+        error: action.error,
+        loading: false
+    })
+} 
+
+
 const getSubjectTestsStart = (state, action) =>{
     return updateObject(state, {
         error: null,
@@ -91,6 +115,10 @@ const subjectsReducer = (state=initialState, action) =>{
         case actionTypes.GET_SUBJECTS_START: return getSubjectsStart(state, action);
         case actionTypes.GET_SUBJECTS_SUCCESS: return getSubjectsSuccess(state, action);
         case actionTypes.GET_SUBJECTS_FAIL: return getSubjectsFail(state, action);
+        //Create Subject
+        case actionTypes.CREATE_SUBJECT_START: return createSubjectStart(state, action);
+        case actionTypes.CREATE_SUBJECT_SUCCESS: return createSubjectSuccess(state, action);
+        case actionTypes.CREATE_SUBJECT_FAIL: return createSubjectFail(state, action);
         //Subject details
         case actionTypes.GET_SUBJECT_TESTS_START: return getSubjectTestsStart(state, action);
         case actionTypes.GET_SUBJECT_TESTS_SUCCESS: return getSubjectTestsSuccess(state, action);

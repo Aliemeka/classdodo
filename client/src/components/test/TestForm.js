@@ -6,15 +6,23 @@ export class TestForm extends Component {
         count: 1
     }
 
+    //Adds a question text area
     addField = ()=>{
         let count = this.state.count + 1
         this.setState({ count})
         this.props.addQuestion()
     }
+
+    //Deletes a question text area
+    deleteField = ()=>{
+        let count = this.state.count - 1
+        this.setState({ count})
+        this.props.removeQuestion()
+    }
     
     render() {
         let count = this.state.count
-        const { handleDelete, enterTitle, removeQuestion, inputQuestion, testOrder, addOption, removeOption, makeAnswer } = this.props
+        const { handleDelete, enterTitle, inputQuestion, testOrder, addOption, removeOption, makeAnswer } = this.props
         const questionForms = []
         for(let i=1; i<=count; i++){
             questionForms.push(i)
@@ -37,7 +45,7 @@ export class TestForm extends Component {
                     </div>
                 </div>
                 <Fragment>
-                    {questionForms.map(i =><QuestionForm key={`${testOrder}.${i}`} order={i} removeField={removeQuestion} 
+                    {questionForms.map(i =><QuestionForm key={`${testOrder}.${i}`} order={i} removeField={this.deleteField} 
                                                                 inputQuestion={inputQuestion} addOption={addOption} 
                                                                 removeOption={removeOption} makeAnswer={makeAnswer}/>)}
                 </Fragment>

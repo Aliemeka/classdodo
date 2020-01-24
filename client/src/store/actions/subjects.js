@@ -2,29 +2,29 @@ import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
 //Begins the authentication process
-export const getSubjectsStart = () =>{
+const getSubjectsStart = () =>{
     return {
         type: actionTypes.GET_SUBJECTS_START
     }
 }
 
-//Checks if getSubjectListentication was successful then gets the token
-export const getSubjectsSuccess = subjects =>{
+//Checks if getSubject was successful
+const getSubjectsSuccess = subjects =>{
     return {
         type: actionTypes.GET_SUBJECTS_SUCCESS,
         subjects
     }
 }
 
-//Checks if there is an error in authentication
-export const getSubjectsFail = error =>{
+//Checks if there is an error in getting subjects
+const getSubjectsFail = error =>{
     return {
         type: actionTypes.GET_SUBJECTS_FAIL,
         error
     } 
 }
 
-
+//Get subjects action
 export const getSubjects = token =>{
     return dispatch =>{
         dispatch(getSubjectsStart())
@@ -37,6 +37,46 @@ export const getSubjects = token =>{
             dispatch(getSubjectsSuccess(subjects))
         }).catch(err=>{
             dispatch(getSubjectsFail(err))
+        })
+    }
+}
+
+
+//Begins the authentication process
+const createSubjectStart = () =>{
+    return {
+        type: actionTypes.CREATE_SUBJECT_START
+    }
+}
+
+//Checks if getSubjectListentication was successful then gets the token
+const createSubjectSuccess = subjects =>{
+    return {
+        type: actionTypes.CREATE_SUBJECT_SUCCESS,
+        subjects
+    }
+}
+
+//Checks if there is an error in authentication
+const createSubjectFail = error =>{
+    return {
+        type: actionTypes.CREATE_SUBJECT_FAIL,
+        error
+    } 
+}
+
+
+export const createSubject = (token, subject) =>{
+    return dispatch =>{
+        dispatch(createSubjectStart())
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`
+        }
+        axios.post('http://127.0.0.1:8000/classroom/', subject).then(res=>{
+            dispatch(createSubjectSuccess())
+        }).catch(err=>{
+            dispatch(createSubjectFail(err))
         })
     }
 }
