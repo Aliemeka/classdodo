@@ -2,22 +2,19 @@ import React, { Component, Fragment } from 'react'
 import QuestionForm from './QuestionForm'
 
 export class TestForm extends Component {
-    state ={
+    state={
         count: 1
     }
-    addField = () =>{
-        const c = this.state.count
-        this.setState({ count: c+1 })
+
+    addField = ()=>{
+        let count = this.state.count + 1
+        this.setState({ count})
+        this.props.addQuestion()
     }
-    removeField = () =>{
-        const c = this.state.count
-        if( c > 1){
-            this.setState({ count: c-1 })
-        }
-    }
+    
     render() {
-        const count = this.state.count
-        const { testOrder, handleDelete, enterTitle } = this.props
+        let count = this.state.count
+        const { handleDelete, enterTitle, removeQuestion, inputQuestion, testOrder } = this.props
         const questionForms = []
         for(let i=1; i<=count; i++){
             questionForms.push(i)
@@ -40,8 +37,8 @@ export class TestForm extends Component {
                     </div>
                 </div>
                 <Fragment>
-                    {questionForms.map(i =><QuestionForm key={parseFloat(`${i}.${testOrder}`)} order={i} removeField={this.removeField} 
-                                                    id={parseFloat(`${i}.${testOrder}`)} test={testOrder}/>)}
+                    {questionForms.map(i =><QuestionForm key={`${testOrder}.${i}`} order={i} removeField={removeQuestion} 
+                                                                inputQuestion={inputQuestion}/>)}
                 </Fragment>
                 <div className="form-group mb-1">
                      <button type="button" className="btn btn-sm btn-dark" title="add question" onClick={this.addField}> 

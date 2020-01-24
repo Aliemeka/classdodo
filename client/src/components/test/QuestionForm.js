@@ -47,11 +47,11 @@ export class QuestionForm extends Component {
     }
     
     render() {
-        const { removeField, order, id, test } = this.props
+        const { removeField, order, inputQuestion } = this.props
         return (
             <div className="mb-3 mt-1"> 
                 <label htmlFor="name">Question {order}</label> 
-                <textarea className="form-control" rows="3" name="question" id={id} test={test}></textarea>
+                <textarea className="form-control" rows="3" name="questionInput" id={order} onChange={inputQuestion}></textarea>
                 <Fragment>
                     {this.state.options.map(option=><Option key={option.key} option={option.option} deleteOption={this.deleteOption}
                                                   question={order} id={option.key} selectOption={this.handleAnswer} answer={this.state.answer}/>)}

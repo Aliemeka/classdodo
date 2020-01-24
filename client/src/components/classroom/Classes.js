@@ -20,7 +20,7 @@ class Classes extends Component{
         }
     }
 
-    componentWillUpdate(newProps){
+    UNSAFE_componentWillUpdate(newProps){
         if(newProps.token !== this.props.token){
             if(newProps.token !== null && newProps.token !== undefined){
                 this.props.getSubjects(newProps.token) 

@@ -18,7 +18,27 @@ class CreateSubjects extends Component {
     state ={
         testsCount: 0,
         tests: [],
-        test_title: null
+        test_title: null,
+        
+        test_Questions: [],
+        questionInput: '',
+        qCount: 1,
+        question: {
+            test: null,
+            //question: '',
+            //order: 1,
+            optionId: 1,
+            option: null,
+            answer: null,
+            options: []
+        },
+
+        option: {
+            question: null, //question.question
+            option: null,
+            is_answer: false
+        },
+        answer: null
     }
 
     // componentDidMount(){
@@ -36,6 +56,37 @@ class CreateSubjects extends Component {
     //     }
     // }
 
+    createQuestion = questionItem =>{
+        questionItem.test = this.state.testsCount
+        questionItem.id = this.state.qCount
+        this.setState({ question: questionItem })
+        const test_Questions = [...this.state.test_Questions, questionItem]
+        this.setState({ test_Questions })
+    }
+
+    addQuestionField = () =>{
+        let qCount = this.state.qCount
+        qCount += 1
+        if(qCount>1){
+            const question = {}
+            question.question = this.state.questionInput
+            this.createQuestion(question)
+        }
+        this.setState({ qCount })
+    }
+
+    removeQuestionField = () =>{
+        let qCount = this.state.qCount
+        this.setState({ qCount: qCount-1 })
+        const test_Questions = this.state.test_Questions.filter(q => q.id !== qCount);
+        this.setState({ test_Questions })
+    }
+
+    handleQuestionInput = e =>{
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
 
     handleTestTitle = e =>{
         this.setState({
@@ -64,7 +115,9 @@ class CreateSubjects extends Component {
         const testsCount = this.state.testsCount
         this.setState({ testsCount: testsCount - 1})
         const tests = this.state.tests.filter(t => t.order !== testsCount);
+        const test_Questions = this.state.test_Questions.filter(tq => tq.test !== testsCount);
         this.setState({ tests })
+        this.setState({ test_Questions })
     }
 
     handleSubmit = e =>{
@@ -112,7 +165,9 @@ class CreateSubjects extends Component {
                                 <div className="form-area-inner pt-5">
                                 {addMessage}
                                     {testForms.map(i => <TestForm key={i} testOrder={i} handleDelete={this.handleDeleteTest} 
-                                                            enterTitle={this.handleTestTitle}/>)}
+                                                            enterTitle={this.handleTestTitle} removeQuestion={this.removeQuestionField}
+                                                            addQuestion={this.addQuestionField} inputQuestion={this.handleQuestionInput}
+                                                            qCount={this.state.qCount}/>)}
                                     <button type="button" className="btn btn-sm btn-success btn-round" onClick={this.handleAddTest}><i className="icon-plus"></i></button>
                                 </div>
                             </div>
