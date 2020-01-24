@@ -184,7 +184,7 @@ class CreateSubjects extends Component {
         }
         const subject = {
             subject_name: e.target.elements.subject_name.value,
-            teacher: `${this.props.fn} ${this.props.ln}`,
+            teacher: this.props.un,
             tests
         }
         this.props.createSubject(this.props.token, subject)
@@ -270,8 +270,7 @@ class CreateSubjects extends Component {
 const mapStateToProps = state =>{
     return{
       token: state.auth.token,
-      fn: state.auth.first_name,
-      ln: state.auth.last_name
+      un: state.auth.username
     }
   }
 
