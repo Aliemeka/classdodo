@@ -23,22 +23,21 @@ class CreateSubjects extends Component {
         test_Questions: [],
         questionInput: '',
         qCount: 1,
+        options: [],
         question: {
             test: null,
             //question: '',
             //order: 1,
-            optionId: 1,
             option: null,
             answer: null,
             options: []
         },
-
+        optionCount: 1,
         option: {
             question: null, //question.question
             option: null,
             is_answer: false
-        },
-        answer: null
+        }
     }
 
     // componentDidMount(){
@@ -55,6 +54,40 @@ class CreateSubjects extends Component {
     //         } 
     //     }
     // }
+
+    createOptions = optionItem =>{
+        optionItem.id = this.state.optionCount
+        optionItem.question = this.state.qCount
+        optionItem.test = this.state.testsCount
+        const options = [...this.state.options, optionItem]
+        this.setState({ options })
+    }
+
+    makeAnswer = answer =>{
+        const options = []
+        const oldOptions = this.state.options
+        oldOptions.forEach(option => {
+            if(option.option===answer){
+                option.is_answer = true
+            }
+            options.push(option)
+        });
+        this.setState({ options })
+    }
+
+    addOption = option =>{
+        const optionCount = this.state.optionCount
+        this.setState({ optionCount: optionCount+1 })
+        this.createOptions(option)
+    }
+
+    removeOption = () =>{
+        const optionCount = this.state.optionCount
+        this.setState({ optionCount: optionCount-1 })
+        const options = this.state.options
+        options.filter(op => op.id !== optionCount)
+        this.setState({ options })
+    }
 
     createQuestion = questionItem =>{
         questionItem.test = this.state.testsCount
@@ -79,7 +112,9 @@ class CreateSubjects extends Component {
         let qCount = this.state.qCount
         this.setState({ qCount: qCount-1 })
         const test_Questions = this.state.test_Questions.filter(q => q.id !== qCount);
+        const options = this.state.options.filter(o => o.question !== qCount);
         this.setState({ test_Questions })
+        this.setState({ options })
     }
 
     handleQuestionInput = e =>{
@@ -98,7 +133,6 @@ class CreateSubjects extends Component {
         testItem.order = this.state.testsCount
         const tests = [...this.state.tests, testItem]
         this.setState({ tests })
-        console.log(tests)
     }
 
     handleAddTest= () =>{
@@ -116,21 +150,61 @@ class CreateSubjects extends Component {
         this.setState({ testsCount: testsCount - 1})
         const tests = this.state.tests.filter(t => t.order !== testsCount);
         const test_Questions = this.state.test_Questions.filter(tq => tq.test !== testsCount);
+        const options = this.state.options.filter(op => op.test !== testsCount);
         this.setState({ tests })
         this.setState({ test_Questions })
+        this.setState({ options })
     }
 
     handleSubmit = e =>{
         e.preventDefault();
-        const tests = this.state.tests
-        for(let i=0; i<=tests.length; i++){
-            // const questions = []
+        const tests = []
+        for(let i=0; i<this.state.tests.length; i++){
+            const test = {}
+            const questions = []
+            const sTests = this.state.tests
+            test.test_title = sTests[i].test_title
+            test.order = i+1
+            const sQ = this.state.test_Questions.filter(q => q.test===i+1)
+            for(let j=0; j<sQ.length; j++){
+                const question ={}
+                const options = []
+                question.question = sQ[j].question
+                question.order = j+1
+                const opt = this.state.options.filter(q => q.question===j+1)
+                opt.forEach(opt => {
+                    options.push(opt.option)
+                    if(opt.is_answer){
+                        question.answer = opt.option
+                    }
+                });
+                question.options = options
+                questions.push(question)
+            }
+            test.questions = questions
+            tests.push(test)
         }
+        const subject = {
+            subject_name: e.target.elements.subject_name.value,
+            teacher: `${this.props.fn} ${this.props.ln}`,
+            tests
+        }
+        console.log(subject)
     }
 
     // {errorMessage}
     render() {
         const testForms = []
+        // const testQuestions = this.state.test_Questions
+        const allTest = this.state.tests
+        let testStatus = 'no test added'
+        if(allTest!==undefined && allTest.length){
+            if(allTest.length>1){
+                testStatus = `${allTest.length} tests added`
+            }else{
+                testStatus = '1 test added'
+            }
+        }
         const testLength = this.state.testsCount
         let addMessage =<p className='pb-1'>Add a test</p>
         if(testLength>0){
@@ -159,15 +233,25 @@ class CreateSubjects extends Component {
                                         </div> 
                                     </div>
                                 </div>
+                                <p className='text-muted ml-2'>{testStatus}</p>
+                                { 
+                                    allTest!==undefined ? allTest.map(test =>
+                                    (<div className="list-group mt-2"> 
+                                            <a href="#t" className="list-group-item active">
+                                                <h5 className="list-group-item-heading">{test.test_title}</h5>
+                                            </a>
+                                        </div>)): null
+                                }
                             </div>
 
                             <div className="col-md-6">
                                 <div className="form-area-inner pt-5">
-                                {addMessage}
+                                {addMessage}    
                                     {testForms.map(i => <TestForm key={i} testOrder={i} handleDelete={this.handleDeleteTest} 
                                                             enterTitle={this.handleTestTitle} removeQuestion={this.removeQuestionField}
                                                             addQuestion={this.addQuestionField} inputQuestion={this.handleQuestionInput}
-                                                            qCount={this.state.qCount}/>)}
+                                                            qCount={this.state.qCount} addOption={this.addOption} removeOption={this.removeOption}
+                                                            makeAnswer={this.makeAnswer}/>)}
                                     <button type="button" className="btn btn-sm btn-success btn-round" onClick={this.handleAddTest}><i className="icon-plus"></i></button>
                                 </div>
                             </div>
@@ -188,7 +272,8 @@ class CreateSubjects extends Component {
 const mapStateToProps = state =>{
     return{
       token: state.auth.token !== null,
-      teacher: state.auth.userId
+      fn: state.auth.first_name,
+      ln: state.auth.last_name
     }
   }
 

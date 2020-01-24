@@ -12,13 +12,14 @@ export class QuestionForm extends Component {
 
     createNewOption = optionItem =>{
         //creates new option
-        optionItem.key = this.state.optionId
+        optionItem.id = this.state.optionId
         const options = [...this.state.options, optionItem]
         this.setState({
           options: options
         })
-        optionItem.key += 1
-        this.setState({ optionId: optionItem.key })
+        optionItem.id += 1
+        this.setState({ optionId: optionItem.id })
+        this.props.addOption(optionItem)
     }
 
     handleChange = e =>{
@@ -38,12 +39,14 @@ export class QuestionForm extends Component {
         let answer = this.state.answer
         answer = e.target.value
         this.setState({ answer: answer })
+        this.props.makeAnswer(answer)
     }
 
-    deleteOption = (key) =>{
+    deleteOption = (id) =>{
         //deletes selected option
-        const options = this.state.options.filter(o => o.key !== key);
+        const options = this.state.options.filter(o => o.id !== id);
         this.setState({ options })
+        this.props.removeOption()
     }
     
     render() {
@@ -53,8 +56,8 @@ export class QuestionForm extends Component {
                 <label htmlFor="name">Question {order}</label> 
                 <textarea className="form-control" rows="3" name="questionInput" id={order} onChange={inputQuestion}></textarea>
                 <Fragment>
-                    {this.state.options.map(option=><Option key={option.key} option={option.option} deleteOption={this.deleteOption}
-                                                  question={order} id={option.key} selectOption={this.handleAnswer} answer={this.state.answer}/>)}
+                    {this.state.options.map(option=><Option key={option.id} option={option.option} deleteOption={this.deleteOption}
+                                                  question={order} id={option.id} selectOption={this.handleAnswer} answer={this.state.answer}/>)}
                 </Fragment>
 
                 <div className='d-flex align-items-center p-1'>

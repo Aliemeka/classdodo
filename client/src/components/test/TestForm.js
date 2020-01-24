@@ -14,7 +14,7 @@ export class TestForm extends Component {
     
     render() {
         let count = this.state.count
-        const { handleDelete, enterTitle, removeQuestion, inputQuestion, testOrder } = this.props
+        const { handleDelete, enterTitle, removeQuestion, inputQuestion, testOrder, addOption, removeOption, makeAnswer } = this.props
         const questionForms = []
         for(let i=1; i<=count; i++){
             questionForms.push(i)
@@ -33,12 +33,13 @@ export class TestForm extends Component {
                 <div className="form-group"> 
                     <div className="col-xs-12 col-sm-10"> 
                         <input type="text" className="form-control" name="test_title" id="test_title"
-                            placeholder="Enter test title" onChange={enterTitle} required/> 
+                            placeholder="Enter test title" onChange={enterTitle} /> 
                     </div>
                 </div>
                 <Fragment>
                     {questionForms.map(i =><QuestionForm key={`${testOrder}.${i}`} order={i} removeField={removeQuestion} 
-                                                                inputQuestion={inputQuestion}/>)}
+                                                                inputQuestion={inputQuestion} addOption={addOption} 
+                                                                removeOption={removeOption} makeAnswer={makeAnswer}/>)}
                 </Fragment>
                 <div className="form-group mb-1">
                      <button type="button" className="btn btn-sm btn-dark" title="add question" onClick={this.addField}> 
