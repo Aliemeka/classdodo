@@ -107,7 +107,7 @@ export const getTeachers = token =>{
         }
         axios.get('http://127.0.0.1:8000/users/').then(res=>{
             const users = res.data;
-            const teachers = users.filter(user => user.is_teacher===true)
+            const teachers = users.filter(user => user.is_teacher)
             dispatch(getTeachersSuccess(teachers))
         }).catch(err=>{
             dispatch(getTeachersFail(err))
@@ -125,7 +125,7 @@ export const getStudents = token =>{
         }
         axios.get('http://127.0.0.1:8000/users/').then(res=>{
             const users = res.data;
-            const students = users.filter(user => user.is_student===true)
+            const students = users.filter(user => user.is_student)
             dispatch(getStudentsSuccess(students))
         }).catch(err=>{
             dispatch(getStudentsFail(err))

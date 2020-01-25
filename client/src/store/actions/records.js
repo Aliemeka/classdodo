@@ -40,3 +40,43 @@ export const getRecords = token =>{
         })
     }
 }
+
+//Begins the authentication process
+const getResultsStart = () =>{
+    return {
+        type: actionTypes.GET_RESULTS_START
+    }
+}
+
+//Checks if getSubject was successful
+const getResultsSuccess = results =>{
+    return {
+        type: actionTypes.GET_RESULTS_SUCCESS,
+        results
+    }
+}
+
+//Checks if there is an error in getting results
+const getResultsFail = error =>{
+    return {
+        type: actionTypes.GET_RESULTS_FAIL,
+        error
+    } 
+}
+
+//Get results action
+export const getResults = (token, recordId) =>{
+    return dispatch =>{
+        dispatch(getResultsStart())
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`
+        }
+        axios.get(`http://127.0.0.1:8000/records/${recordId}/results`).then(res=>{
+            const results = res.data
+            dispatch(getResultsSuccess(results))
+        }).catch(err=>{
+            dispatch(getResultsFail(err))
+        })
+    }
+}

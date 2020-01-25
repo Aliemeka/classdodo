@@ -214,6 +214,17 @@ hr.test-line{
     margin: 4px 0 16px 0;
 }
 
+.result-card{
+    flex-direction: column;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px #999999;
+}
+
+.result-heading{
+    font-size: 3rem;
+}
+
 @media(min-width: 780px){
     .form-area-inner{
         width: 85%;

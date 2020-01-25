@@ -49,6 +49,11 @@ export const GET_RECORDS_START = 'GET_RECORDS_START';
 export const GET_RECORDS_SUCCESS = 'GET_RECORDS_SUCCESS';
 export const GET_RECORDS_FAIL = 'GET_RECORDS_FAIL';
 
+//Records Action Types
+export const GET_RESULTS_START = 'GET_RESULTS_START';
+export const GET_RESULTS_SUCCESS = 'GET_RESULTS_SUCCESS';
+export const GET_RESULTS_FAIL = 'GET_RESULTS_FAIL';
+
 //Submit test Action Types
 export const SUBMIT_TEST_START = 'SUBMIT_TEST_START';
 export const SUBMIT_TEST_SUCCESS = 'SUBMIT_TEST_SUCCESS';

@@ -59,6 +59,7 @@ export const authLogin = (username, password) =>{
                 username,
                 is_student: user_type.is_student,
                 is_teacher: user_type.is_teacher,
+                record: user_type.record,
                 expirationDate: new Date(new Date().getTime() + 7200 * 1000)
             }
             // const token = res.data.key;  //gets authentication key
@@ -97,6 +98,7 @@ export const authSignUp = (first_name, last_name, username, email, password1, pa
                 username,
                 is_student,
                 is_teacher,
+                record: res.data.user_type.record,
                 expirationDate: new Date(new Date().getTime() + 7200 * 1000) //sets expiration time for 2 hour
             } 
             localStorage.setItem('user', JSON.stringify(user));   //stores token in local storage

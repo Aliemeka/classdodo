@@ -6,6 +6,7 @@ import CreateSubjects from '../components/classroom/CreateSubjects'
 import Records from '../components/records/Records'
 import Results from '../components/records/Results'
 import ResultDetails from '../components/records/ResultDetails'
+import TestScores from '../components/records/TestScores'
 import TestScoreDetails from '../components/records/TestScoreDetails'
 
 import Login from '../components/signing/Login';
@@ -27,9 +28,10 @@ const Main = () =>{
             <Route exact path='/:subject_id/test/:test_id' component={TestMain}/>
             <Route exact path='/:subject_id/add' component={AddTest}/>
             <Route exact path='/records' component={Records}/>
-            <Route exact path='/profile/:user_id/results' component={Results}/>
-            <Route exact path='/profile/:user_id/results/:result_id' component={ResultDetails}/>
-            <Route exact path='/profile/:user_id/results/:result_id/tests' component={TestScoreDetails}/>
+            <Route exact path='/profile/:record_id/results' component={Results}/>
+            <Route exact path='/profile/:record_id/results/:result_id' component={ResultDetails}/>
+            <Route exact path='/profile/:record_id/results/:result_id/tests' component={TestScores}/>
+            <Route exact path='/profile/tests/:test_id' component={TestScoreDetails}/>
         </Switch>
     )
 }

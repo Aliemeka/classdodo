@@ -14,12 +14,21 @@ class Records extends Component {
         records: []
     }
     componentDidMount(){
-        axios.get('http://127.0.0.1:8000/records/').then(
-            res =>{
-                this.setState({ records : res.data })
-            }
-        )
+        if(this.props.token !== null && this.props.token !== undefined){
+            this.props.getRecords(this.props.token)
+            this.props.getTeachers(this.props.token)
+        }
     }
+
+    UNSAFE_componentWillUpdate(newProps){
+        if(newProps.token !== this.props.token){
+            if(newProps.token !== null && newProps.token !== undefined){
+                this.props.getRecords(newProps.token) 
+                this.props.getStudents(newProps.token) 
+            } 
+        }
+    }
+
     render() {
         return (
             <main className="main-area pt-5 pb-5">
@@ -39,14 +48,14 @@ const mapStateToProps = state =>{
         token: state.auth.token,
         loading: state.records.loading,
         records: state.records.records,
-        teachers: state.users.teachers
+        students: state.users.students
     }
  }
 
  const mapDispatchToProps = dispatch =>{
     return{
         getRecords: token => dispatch(actions.getRecords(token)),
-        getStudents: token => dispatch(userActions.getTeachers(token))
+        getStudents: token => dispatch(userActions.getStudents(token))
     }
   }
  export default connect(mapStateToProps, mapDispatchToProps)(Records)

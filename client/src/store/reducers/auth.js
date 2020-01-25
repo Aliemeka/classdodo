@@ -11,6 +11,7 @@ const initialState = {
     username: null,
     is_student: null,
     is_teacher: null,
+    record: null,
     loading: false
 }
 
@@ -20,6 +21,7 @@ const authStart = (state, action) =>{
         username: null,
         is_student: null,
         is_teacher: null,
+        record: null,
         loading: true
     })
 }
@@ -33,6 +35,7 @@ const authSuccess = (state, action) =>{
         username: action.user.username,
         is_student: action.user.is_student,
         is_teacher: action.user.is_teacher,
+        record: action.user.record,
         error: null,
         loading: false
     })

@@ -13,7 +13,7 @@ class Navbar extends Component{
     }
     render(){
         const icon = <i className='icon-face'></i>
-        const userId = this.props.userId
+        const record = this.props.record
         return (
             <nav className="navbar container-fluid bg-dark">
                 <ul className="nav-links-center">
@@ -28,7 +28,7 @@ class Navbar extends Component{
                                 <li className="navlink"><NavLink to="/add-subject"><i className="icon-plus"></i> Add Subject</NavLink></li> 
                                 </Fragment>
                                 : this.props.is_student ?
-                                <li className="navlink"><NavLink to={`/profile/${userId}/results`}><i className="icon-person"></i> Profile</NavLink></li>
+                                <li className="navlink"><NavLink to={`/profile/${record}/results`}><i className="icon-person"></i> Profile</NavLink></li>
                                 : null
                             }
                         </Fragment>
@@ -62,7 +62,7 @@ class Navbar extends Component{
 const mapStateToProps = state =>{
   return{
     is_student: state.auth.is_student,
-    userId: state.auth.userId
+    record: state.auth.record
   }
 }
   
