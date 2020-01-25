@@ -12,20 +12,25 @@ class Navbar extends Component{
          }, 300);
     }
     render(){
+        const icon = <i className='icon-face'></i>
+        const userId = this.props.userId
         return (
             <nav className="navbar container-fluid bg-dark">
                 <ul className="nav-links-center">
-                    <li className="navlink"><NavLink to="/">Classroom</NavLink></li>
+                    <li className="navlink"><NavLink to="/"><i className="icon-dashboard"></i> Classroom</NavLink></li>
                     {
                         this.props.isAuthenticated ? 
                         <Fragment>
-                            <li className="navlink"><NavLink to="/records">Record</NavLink></li>
-                            <Fragment>
-                                {
-                                    this.props.is_teacher ?
-                                    <li className="navlink"><NavLink to="/add-subject"><i className="icon-plus"></i> Add Subject</NavLink></li> : null
-                                }
-                            </Fragment>
+                            {
+                                this.props.is_teacher ?
+                                <Fragment>
+                                <li className="navlink"><NavLink to="/records"><i className="icon-group"></i>Records</NavLink></li>
+                                <li className="navlink"><NavLink to="/add-subject"><i className="icon-plus"></i> Add Subject</NavLink></li> 
+                                </Fragment>
+                                : this.props.is_student ?
+                                <li className="navlink"><NavLink to={`/profile/${userId}/results`}><i className="icon-person"></i> Profile</NavLink></li>
+                                : null
+                            }
                         </Fragment>
                             :
                             <li className="navlink"><NavLink to="/about">About</NavLink></li> 
@@ -35,14 +40,14 @@ class Navbar extends Component{
                 {
                     this.props.isAuthenticated ? (
                         <Fragment>
-                            <li><span className="inner-nav-link">{`Welcome ${this.props.first_name} ${this.props.last_name}`}</span></li>
-                            <li><span className="inner-nav-link" onClick={this.handleLogOut}>Log out</span></li>
+                            <li><span className="inner-nav-link">{icon} {`Welcome ${this.props.first_name} ${this.props.last_name}`}</span></li>
+                            <li><span className="inner-nav-link" onClick={this.handleLogOut}>Log out <i className='icon-sign-out'></i></span></li>
                         </Fragment>
                     )
                     : (
                         <Fragment>
                             <li><NavLink to="/sign-up">Sign-Up</NavLink></li>
-                            <li><NavLink to="/log-in">Log-In</NavLink></li>
+                            <li><NavLink to="/log-in">Log-In <i className='icon-sign-in'></i></NavLink></li>
                         </Fragment>
                     )
                 }
@@ -53,6 +58,14 @@ class Navbar extends Component{
     }
 }
 
+
+const mapStateToProps = state =>{
+  return{
+    is_student: state.auth.is_student,
+    userId: state.auth.userId
+  }
+}
+  
  
  const mapDispatchToProps = dispatch =>{
     return {
@@ -60,4 +73,4 @@ class Navbar extends Component{
     }
  }
  
- export default withRouter(connect(null, mapDispatchToProps)(Navbar))
+ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar))

@@ -3,6 +3,11 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 
 import RecordList from './RecordList'
+import * as actions from '../../store/actions/records'
+import * as userActions from '../../store/actions/users'
+
+import Loader from '../../containers/Loader'
+
 
 class Records extends Component {
     state = {
@@ -31,9 +36,17 @@ class Records extends Component {
 
 const mapStateToProps = state =>{
     return{
-       loading: state.loading,
-       error: state.error
+        token: state.auth.token,
+        loading: state.records.loading,
+        records: state.records.records,
+        teachers: state.users.teachers
     }
  }
 
- export default connect(mapStateToProps)(Records)
+ const mapDispatchToProps = dispatch =>{
+    return{
+        getRecords: token => dispatch(actions.getRecords(token)),
+        getStudents: token => dispatch(userActions.getTeachers(token))
+    }
+  }
+ export default connect(mapStateToProps, mapDispatchToProps)(Records)
