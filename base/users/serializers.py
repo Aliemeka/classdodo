@@ -4,19 +4,13 @@ from rest_framework.authtoken.models import Token
 from rest_auth.registration.serializers import RegisterSerializer
 from allauth.account.adapter import get_adapter
 from .models import AppUser
-#from score.serializers import RecordSerializer
 
 class UserSerializer(ModelSerializer):
+
     class Meta:
         model = AppUser
-        fields = ('id','first_name', 'last_name', 'email', 'username', 'password', 'is_student', 'is_teacher')
+        fields = ('id','first_name', 'last_name', 'email', 'username', 'password', 'is_student', 'is_teacher', 'record')
 
-    # def get_record(obj, self):
-    #     users = AppUser.objects.all()
-    #     for user in users:
-    #         if user.is_student:
-    #             record = RecordSerializer(obj.record.all(), many=False).data
-    #             return record
 
 class CustomRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField()
