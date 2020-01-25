@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import TestForm from '../test/TestForm'
 
+import Alertbox from '../../containers/Alertbox'
+
 import {createSubject} from '../../store/actions/subjects'
 
 
@@ -23,7 +25,8 @@ class CreateSubjects extends Component {
         questionInput: '',
         qCount: 1,
         options: [],
-        optionCount: 1
+        optionCount: 1,
+        is_Submitted: false
     }
 
     // componentDidMount(){
@@ -188,6 +191,7 @@ class CreateSubjects extends Component {
             tests
         }
         this.props.createSubject(this.props.token, subject)
+        this.setState({ is_Submitted: true })
     }
 
     // {errorMessage}
@@ -195,6 +199,7 @@ class CreateSubjects extends Component {
         const testForms = []
         // const testQuestions = this.state.test_Questions
         const allTest = this.state.tests
+        const is_Submitted = this.state.is_Submitted
         let testStatus = 'no test added'
         if(allTest!==undefined && allTest.length){
             if(allTest.length>1){
@@ -211,11 +216,19 @@ class CreateSubjects extends Component {
         for(let i=1; i<=testLength; i++){
             testForms.push(i)
         }
-        // const questionForms = []
-
+        let alert = null
+        if(is_Submitted){
+            if(!this.props.loading){
+                if(this.props.error){
+                    alert = <Alertbox message={'Invalid entry'} status={'error'} />
+                }else{
+                    alert = <Alertbox message={'Created new subject'} status={'success'} />
+                }
+            }
+        }
         return (
             <main className="main-area pt-5 pb-5">
-          
+                {alert}
                 <h1 className="text-center">Add a subject</h1>
                 <section className="form-area container bg-light">
                     <form className="p-2 mt-1" onSubmit={this.handleSubmit}>
@@ -270,7 +283,9 @@ class CreateSubjects extends Component {
 const mapStateToProps = state =>{
     return{
       token: state.auth.token,
-      un: state.auth.username
+      un: state.auth.username,
+      loading: state.subjects.loading,
+      error: state.subjects.error
     }
   }
 
