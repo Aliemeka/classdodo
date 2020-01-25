@@ -30,3 +30,8 @@ class TestScoreListApiView(generics.ListCreateAPIView):
 class TestScoreDetailView(generics.RetrieveAPIView):
     serializer_class = TestScoreSerializer
     queryset = Test_score.objects.all()
+
+
+class TestScoreListView(generics.ListAPIView):
+    serializer_class = TestScoreSerializer
+    queryset = Test_score.objects.all()
