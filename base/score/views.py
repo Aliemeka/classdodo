@@ -26,3 +26,7 @@ class TestScoreListApiView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = Test_score.objects.filter(result_id=self.kwargs["pk"])
         return queryset
+
+class TestScoreDetailView(generics.RetrieveAPIView):
+    serializer_class = TestScoreSerializer
+    queryset = Test_score.objects.all()

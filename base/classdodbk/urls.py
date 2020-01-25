@@ -9,5 +9,6 @@ urlpatterns = [
     path('classroom/', include('classroom.urls')),
     path('users/', include('users.urls')),
     path('records/', include('score.urls')),
-    path('records/<int:pk>/results/', include('score.api.urls'))
+    path('records/<int:pk>/results/', include('score.api.urls')),
+    path('records/tests/', include('score.api.testapi.urls'))
 ]
