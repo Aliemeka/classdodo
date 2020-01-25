@@ -8,5 +8,6 @@ urlpatterns = [
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('classroom/', include('classroom.urls')),
     path('users/', include('users.urls')),
-    path('records/', include('score.urls'))
+    path('records/', include('score.urls')),
+    path('records/<int:pk>/results/', include('score.api.urls'))
 ]
