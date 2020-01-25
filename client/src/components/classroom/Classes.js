@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 // import axios from 'axios'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import * as actions from '../../store/actions/subjects'
 import * as tActions from '../../store/actions/users'
@@ -96,4 +96,4 @@ const mapStateToProps = state =>{
     }
   }
 
- export default connect(mapStateToProps, mapDispatchToProps)(Classes)
+ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Classes))

@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/subjects'
@@ -7,7 +7,7 @@ import Test from './Test'
 import Loader from '../../containers/Loader'
 
 
-export class TestList extends PureComponent {
+export class TestList extends Component {
 
     componentDidMount(){
         let id = this.props.match.params.subject_id

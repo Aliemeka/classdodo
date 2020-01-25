@@ -14,9 +14,9 @@ const composeType = compose
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    records: recordsReducer,
     subjects: subjectsReducer,
     users: usersReducer,
-    records: recordsReducer
 })
 
 

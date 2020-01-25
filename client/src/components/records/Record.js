@@ -12,7 +12,7 @@ export class Record extends Component {
                         <img src="images/icon.png" alt="" class="img-fluid"/>
                     </div>
                     <h3 class="card-title text-center">{record.student}'s Record</h3>
-                    <Link to={`records/${record.id}`} class="text-center"><button class="btn btn-sm btn-dark">View Results</button></Link>
+                    <Link to={`records/${record.id}/results`} class="text-center"><button class="btn btn-sm btn-dark">View Results</button></Link>
                 </div>
             </div>
         )

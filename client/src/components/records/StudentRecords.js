@@ -1,26 +1,22 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-import RecordList from './RecordList'
+import Record from './Record'
 import * as actions from '../../store/actions/records'
 import * as userActions from '../../store/actions/users'
 
 import Loader from '../../containers/Loader'
 
 
-class Records extends Component {
-    state = {
-        records: []
-    }
+class StudentRecords extends PureComponent {
     componentDidMount(){
         if(this.props.token !== null && this.props.token !== undefined){
             this.props.getRecords(this.props.token)
-            this.props.getTeachers(this.props.token)
+            this.props.getStudents(this.props.token)
         }
     }
 
-    UNSAFE_componentWillUpdate(newProps){
+    componentWillUpdate(newProps){
         if(newProps.token !== this.props.token){
             if(newProps.token !== null && newProps.token !== undefined){
                 this.props.getRecords(newProps.token) 
@@ -33,11 +29,16 @@ class Records extends Component {
         return (
             <main className="main-area pt-5 pb-5">
             <h1 className="text-center">All Records</h1>
-            <section className="records-section container bg-light pt-4 pb-4">
-                <div className="row justify-content-center p-2 pr-3 pl-3">
-                    <RecordList records={this.state.records} />
-                </div>
-            </section>
+            {
+                this.props.loading ?
+                <Loader />
+                :
+                <section className="records-section container bg-light pt-4 pb-4">
+                    <div className="row justify-content-center p-2 pr-3 pl-3">
+                     { this.props.records.map((record, id) =><Record key={id} record={record} />) }
+                    </div>
+                </section>
+            }
         </main>
         )
     }
@@ -58,4 +59,5 @@ const mapStateToProps = state =>{
         getStudents: token => dispatch(userActions.getStudents(token))
     }
   }
- export default connect(mapStateToProps, mapDispatchToProps)(Records)
+
+ export default connect(mapStateToProps, mapDispatchToProps)(StudentRecords)

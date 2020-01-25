@@ -24,8 +24,8 @@ class Navbar extends Component{
                             {
                                 this.props.is_teacher ?
                                 <Fragment>
-                                <li className="navlink"><NavLink to="/records"><i className="icon-group"></i>Records</NavLink></li>
                                 <li className="navlink"><NavLink to="/add-subject"><i className="icon-plus"></i> Add Subject</NavLink></li> 
+                                <li className="navlink"><NavLink to="/records"><i className="icon-group"></i> Records</NavLink></li> 
                                 </Fragment>
                                 : this.props.is_student ?
                                 <li className="navlink"><NavLink to={`/profile/${record}/results`}><i className="icon-person"></i> Profile</NavLink></li>

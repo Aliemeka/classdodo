@@ -112,12 +112,14 @@ export const getSubjectTests = (token, id) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get(`http://127.0.0.1:8000/classroom/${id}/`).then(res=>{
-            const subject = res.data;
-            dispatch(getSubjectTestsSuccess(subject))
-        }).catch(err=>{
-            dispatch(getSubjectTestsFail(err))
-        })
+        if(id!=='record'){
+            axios.get(`http://127.0.0.1:8000/classroom/${id}/`).then(res=>{
+                const subject = res.data;
+                dispatch(getSubjectTestsSuccess(subject))
+            }).catch(err=>{
+                dispatch(getSubjectTestsFail(err))
+            })
+        }
     }
 }
 
