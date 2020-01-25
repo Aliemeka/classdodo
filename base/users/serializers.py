@@ -61,9 +61,11 @@ class TokenSerializer(serializers.ModelSerializer):
         last_name = serializer_data.get('last_name')
         is_student = serializer_data.get('is_student')
         is_teacher = serializer_data.get('is_teacher')
+        record = serializer_data.get('record')
         return{
             'first_name': first_name,
             'last_name': last_name,
             'is_student': is_student,
-            'is_teacher': is_teacher
+            'is_teacher': is_teacher,
+            'record': record
         }
