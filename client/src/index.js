@@ -4,6 +4,7 @@ import App from './App';
 import authReducer from './store/reducers/auth';
 import subjectsReducer from './store/reducers/subjects';
 import usersReducer from './store/reducers/users';
+import recordsReducer from './store/reducers/records';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -14,7 +15,8 @@ const composeType = compose
 const rootReducer = combineReducers({
     auth: authReducer,
     subjects: subjectsReducer,
-    users: usersReducer
+    users: usersReducer,
+    records: recordsReducer
 })
 
 
