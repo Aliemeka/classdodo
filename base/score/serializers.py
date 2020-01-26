@@ -1,6 +1,11 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, StringRelatedField
 from rest_framework import serializers
 from .models import Record, Result, Test_score
+
+
+class StringSerializers(StringRelatedField):
+    def to_internal_value(self, value):
+        return value
 
 
 class TestScoreSerializer(ModelSerializer):
@@ -21,6 +26,7 @@ class ResultSerializer(ModelSerializer):
         return test_scores
 
 class RecordSerializer(ModelSerializer):
+    student = StringSerializers(many=False)
     results = serializers.SerializerMethodField()
 
     class Meta:
