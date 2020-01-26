@@ -42,7 +42,7 @@ class Classes extends Component{
                 {  this.props.isAuthenticated ?
                     <Fragment>
                     <h1 className="text-center">Your Dashboard</h1>
-                    <section className="courses-area container full-width mt-4 mb-4">
+                    <section className="courses-area container full-width mt-4 mb-5 pb-4">
                     {this.props.loading ?
                         <Loader />
                     :
@@ -61,7 +61,7 @@ class Classes extends Component{
                         :
                         <Fragment>
                         <h1 className="text-center">Welcome to Class Dodo</h1>
-                        <section className="courses-area container full-width mt-4 mb-4 bg-light p-5">
+                        <section className="courses-area container full-width mt-4 mb-5 bg-light p-5">
                             <div className="d-flex justify-content-center 
                                 text-muted align-items-center mt-5 mb-5">
                                 <h2><i className="icon-warning"></i></h2>

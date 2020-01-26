@@ -92,7 +92,7 @@ export class TestMain extends Component {
                         <main className="main-area pt-3 pb-2">
                         
                             <h1 className="text-center">{this.props.test.test_title}</h1>
-                            <section className="courses-area container full-width mt-4 mb-4">
+                            <section className="courses-area container full-width mt-4 mb-4 pb-4">
                             <Fragment>
                             {  this.props.test.questions!==undefined && this.props.test.questions !== null ?
                                 <div className="d-flex justify-content-center">

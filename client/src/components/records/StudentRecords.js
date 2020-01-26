@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import Record from './Record'
@@ -15,8 +15,8 @@ class StudentRecords extends PureComponent {
             this.props.getStudents(this.props.token)
         }
     }
-
-    componentWillUpdate(newProps){
+    
+    UNSAFE_componentWillUpdate(newProps){
         if(newProps.token !== this.props.token){
             if(newProps.token !== null && newProps.token !== undefined){
                 this.props.getRecords(newProps.token) 
@@ -33,9 +33,13 @@ class StudentRecords extends PureComponent {
                 this.props.loading ?
                 <Loader />
                 :
-                <section className="records-section container bg-light pt-4 pb-4">
+                <section className="records-section container mt-4 mb-4 bg-light pt-4 pb-4">
                     <div className="row justify-content-center p-2 pr-3 pl-3">
-                     { this.props.records.map((record, id) =><Record key={id} record={record} />) }
+                     { this.props.records.length ?
+                        <Fragment>
+                            {this.props.records.map((record, id) =><Record key={id} record={record} />) }
+                         </Fragment> : <h3 className='text-muted'>No records yet</h3>
+                     }
                     </div>
                 </section>
             }

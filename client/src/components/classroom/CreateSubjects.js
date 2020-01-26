@@ -230,7 +230,7 @@ class CreateSubjects extends Component {
             <main className="main-area pt-5 pb-5">
                 {alert}
                 <h1 className="text-center">Add a subject</h1>
-                <section className="form-area container bg-light">
+                <section className="form-area container bg-light mt-4 mb-5 pt-2 pb-2">
                     <form className="p-2 mt-1" onSubmit={this.handleSubmit}>
                         <div className="row mt-2 pt-2">
 

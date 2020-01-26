@@ -55,7 +55,7 @@ class SignUp extends Component{
           <main className="main-area pt-5 pb-5">
           {errorMessage}
           <h1 className="text-center">Sign-Up</h1>
-          <section className="form-area container bg-light">
+          <section className="form-area container mb-5 bg-light">
               
               <div className="form-selector d-flex justify-content-center">
                  <div className="btn-group">

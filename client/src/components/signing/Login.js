@@ -29,7 +29,7 @@ class Login extends Component{
           <main className="main-area pt-5 pb-5">
                { errorMessage }
               <h1 className="text-center">Log-In</h1>
-              <section className="form-area container bg-light">
+              <section className="form-area container bg-light mt-4 mb-5">
                   <div className="form-selector pt-4"/>
                   <form className="form-area-inner mt-4 pt-5" onSubmit={this.handleLogin}>
                       <div className="form-horizontal p-3"> 
