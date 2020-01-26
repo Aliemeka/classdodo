@@ -26,13 +26,13 @@ const Main = () =>{
             <Route exact path='/sign-up' component={SignUp}/>
             <Route exact path='/log-in' component={Login}/>
             <Route exact path='/records' component={StudentRecords} />
+            <Route exact path='/profile/:record_id/results' component={Results}/>
             <Route exact path='/profile/:record_id/results/:result_id' component={ResultDetails}/>
             <Route exact path='/profile/:record_id/results/:result_id/tests' component={TestScores}/>
             <Route exact path='/profile/tests/:test_id' component={TestScoreDetails}/>
             <Route exact path='/:subject_id' component={TestList}/>
             <Route exact path='/:subject_id/test/:test_id' component={TestMain}/>
             <Route exact path='/:subject_id/add' component={AddTest}/>
-            <Route exact path='/profile/:record_id/results' component={Results}/>
         </Switch>
     )
 }
