@@ -5,6 +5,7 @@ import authReducer from './store/reducers/auth';
 import subjectsReducer from './store/reducers/subjects';
 import usersReducer from './store/reducers/users';
 import recordsReducer from './store/reducers/records';
+import resultReducer from './store/reducers/resultDetails';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -15,6 +16,7 @@ const composeType = compose
 const rootReducer = combineReducers({
     auth: authReducer,
     records: recordsReducer,
+    result: resultReducer,
     subjects: subjectsReducer,
     users: usersReducer,
 })

@@ -131,10 +131,10 @@ const getTestScoresStart = () =>{
 }
 
 //Checks if getTestScores was successful
-const getTestScoresSuccess = resultDetails =>{
+const getTestScoresSuccess = testScores =>{
     return {
         type: actionTypes.GET_TESTS_SCORES_SUCCESS,
-        resultDetails
+        testScores
     }
 }
 
