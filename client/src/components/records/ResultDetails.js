@@ -46,11 +46,54 @@ export class ResultDetails extends PureComponent {
         return '...'
     }
 
+    getGrade = (score) =>{
+        switch (score) {
+            case 5:
+                return "A"
+                
+            case 0:
+                return "F"
+                
+            case 4:
+                return "B"
+                
+            case 3:
+                return "C"
+                
+            case 2:
+                return "D"
+                
+            case 1:
+                return "F"
+                
+        
+            default:
+                return '-'
+        }
+    }
+
     render() {
         const student = this.getExactStudent()
         const recordId = this.props.match.params.record_id
         const resultId = this.props.match.params.result_id
         const subject = this.props.loading ? '....' : this.props.resultDetails.subject !== undefined ?  this.props.resultDetails.subject : '...'
+        let textColor = ' '
+        if(!this.props.loading){
+            if(this.props.resultDetails.average_score !== null && this.props.resultDetails.average_score !== undefined){
+                if(this.props.resultDetails.average_score > 75){
+                    textColor = 'text-success'
+                }
+                else if(this.props.resultDetails.average_score > 59){
+                    textColor = 'text-primary'
+                }
+                else if(this.props.resultDetails.average_score > 49){
+                    textColor = 'text-warning'
+                }
+                else{
+                    textColor = 'text-danger'
+                }
+            }
+        }
         return (
             <main className="main-area pt-5 pb-5">
                 <ol className="breadcrumb sp">
@@ -75,14 +118,14 @@ export class ResultDetails extends PureComponent {
                     <h1 className="text-center mt-3">{student}'s details</h1>
                     <section className="records-section container bg-light pt-4 pb-4">
                         <div className="row justify-content-center p-2">
-                            <div className="col-sm-6">
+                            <div className="col-sm-6 pb-3">
                                 <div className="card result-card d-flex justify-content-center align-items-center p-3">
                                 {
                                    this.props.resultDetails.id !== null && this.props.resultDetails.id !==undefined ?
                                    <Fragment>
                                        <h3 className="mt-2 mb-3 text-center">{this.props.resultDetails.subject}</h3>
                                        <p className="text-bold mb-1">Aggregate:</p>
-                                       <h1 className="result-heading text-success">{parseInt(this.props.resultDetails.average_score)}%</h1>
+                                       <h1 className={`result-heading ${textColor}`}>{parseInt(this.props.resultDetails.average_score)}%</h1>
                                        <p className="mt-1">Success Rate: <span className="text-bold">{this.props.resultDetails.success_rate}</span></p>
                                    </Fragment> :
                                    <Fragment>
@@ -111,7 +154,7 @@ export class ResultDetails extends PureComponent {
                                                 {this.props.testScores.map(ts =>(<tr key={ts.id}>
                                                                         <th scope="row">{ts.test}</th>
                                                                         <td>{ts.score}</td>
-                                                                        <td>A</td>
+                                                                        <td>{this.getGrade(ts.score)}</td>
                                                                     </tr>))}
                                             </Fragment>:
                                             <tr>
