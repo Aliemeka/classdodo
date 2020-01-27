@@ -20,10 +20,10 @@ class Test(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Test {self.test_title} on {self.subject.subject_name}'
+        return f'{self.test_title}'
 
     def __unicode__(self):
-        return f'Test {self.test_title} on {self.subject.subject_name}'
+        return f'{self.test_title}'
 
 
 class Choice(models.Model):

@@ -1,5 +1,10 @@
 import React, { PureComponent } from 'react'
-// import * as actions from '../../store/actions/records'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import * as actions from '../../store/actions/records'
+
+import Loader from '../../containers/Loader'
 
 export class Results extends PureComponent {
     render() {
@@ -14,34 +19,7 @@ export class Results extends PureComponent {
                                 <p className="text-bold mb-1">Aggregate:</p>
                                 <h1 className="result-heading text-success">91%</h1>
                                 <p className="mt-1">Success Rate: <span className="text-bold">98</span></p>
-                                <button className="btn btn-md btn-dark mb-1"><i className="icon-view"></i>View Tests</button>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
-                            <div className="card result-card d-flex justify-content-center align-items-center p-3">
-                                <h3 className="mt-2 mb-3">English </h3>
-                                <p className="text-bold mb-1">Aggregate:</p>
-                                <h1 className="result-heading text-success">91%</h1>
-                                <p className="mt-1">Success Rate: <span className="text-bold">98</span></p>
-                                <button className="btn btn-md btn-dark mb-1"><i className="icon-view"></i>View Tests</button>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
-                            <div className="card result-card d-flex justify-content-center align-items-center p-3">
-                                <h3 className="mt-2 mb-3">Chemistry </h3>
-                                <p className="text-bold mb-1">Aggregate:</p>
-                                <h1 className="result-heading text-success">91%</h1>
-                                <p className="mt-1">Success Rate: <span className="text-bold">98</span></p>
-                                <button className="btn btn-md btn-dark mb-1"><i className="icon-view"></i>View Tests</button>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-3 mb-2">
-                            <div className="card result-card d-flex justify-content-center align-items-center p-3">
-                                <h3 className="mt-2 mb-3">French </h3>
-                                <p className="text-bold mb-1">Aggregate:</p>
-                                <h1 className="result-heading text-danger">49%</h1>
-                                <p className="mt-1">Success Rate: <span className="text-bold">98</span></p>
-                                <button className="btn btn-md btn-dark mb-1"><i className="icon-view"></i>View Tests</button>
+                                <Link to="/profile/1/results/2"><button className="btn btn-md btn-dark mb-1"><i className="icon-view"></i>View Tests</button></Link>
                             </div>
                         </div>
                     </div>

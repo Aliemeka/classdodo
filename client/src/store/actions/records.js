@@ -48,7 +48,7 @@ const getResultsStart = () =>{
     }
 }
 
-//Checks if getSubject was successful
+//Checks if getResults was successful
 const getResultsSuccess = results =>{
     return {
         type: actionTypes.GET_RESULTS_SUCCESS,
@@ -72,11 +72,93 @@ export const getResults = (token, recordId) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get(`http://127.0.0.1:8000/records/${recordId}/results`).then(res=>{
+        axios.get(`http://127.0.0.1:8000/records/${recordId}/results/`).then(res=>{
             const results = res.data
             dispatch(getResultsSuccess(results))
         }).catch(err=>{
             dispatch(getResultsFail(err))
+        })
+    }
+}
+
+
+//Begins the authentication process
+const getResultDetailsStart = () =>{
+    return {
+        type: actionTypes.GET_RESULT_DETAILS_START
+    }
+}
+
+//Checks if getResultDetails was successful
+const getResultDetailsSuccess = resultDetails =>{
+    return {
+        type: actionTypes.GET_RESULT_DETAILS_SUCCESS,
+        resultDetails
+    }
+}
+
+//Checks if there is an error in getting results
+const getResultDetailsFail = error =>{
+    return {
+        type: actionTypes.GET_RESULT_DETAILS_FAIL,
+        error
+    } 
+}
+
+//Get results action
+export const getResultDetails = (token, recordId, resultId) =>{
+    return dispatch =>{
+        dispatch(getResultDetailsStart())
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`
+        }
+        axios.get(`http://127.0.0.1:8000/records/${recordId}/results/${resultId}/`).then(res=>{
+            const resultDetails = res.data
+            dispatch(getResultDetailsSuccess(resultDetails))
+        }).catch(err=>{
+            dispatch(getResultDetailsFail(err))
+        })
+    }
+}
+
+
+//Begins the authentication process
+const getTestScoresStart = () =>{
+    return {
+        type: actionTypes.GET_TESTS_SCORES_START
+    }
+}
+
+//Checks if getTestScores was successful
+const getTestScoresSuccess = resultDetails =>{
+    return {
+        type: actionTypes.GET_TESTS_SCORES_SUCCESS,
+        resultDetails
+    }
+}
+
+//Checks if there is an error in getting results
+const getTestScoresFail = error =>{
+    return {
+        type: actionTypes.GET_TESTS_SCORES_FAIL,
+        error
+    } 
+}
+
+//Get results action
+export const getTestScores = (token, recordId, resultId) =>{
+    return dispatch =>{
+        dispatch(getTestScoresStart())
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`
+        }
+        axios.get(`http://127.0.0.1:8000/records/${recordId}/results/${resultId}/tests/`).then(res=>{
+            const testScores = res.data
+            dispatch(getTestScoresSuccess(testScores))
+        }).catch(err=>{
+            dispatch(getTestScoresFail(err))
         })
     }
 }

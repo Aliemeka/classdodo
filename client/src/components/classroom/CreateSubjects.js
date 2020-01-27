@@ -172,7 +172,7 @@ class CreateSubjects extends Component {
                 const options = []
                 question.question = sQ[j].question
                 question.order = j+1
-                const opt = this.state.options.filter(q => q.question===j+1)
+                const opt = this.state.options.filter(o => o.question===j+1)
                 opt.forEach(opt => {
                     options.push(opt.option)
                     if(opt.is_answer){

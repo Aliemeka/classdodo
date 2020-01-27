@@ -9,12 +9,15 @@ class StringSerializers(StringRelatedField):
 
 
 class TestScoreSerializer(ModelSerializer):
+    test = StringSerializers(many=False)
+
     class Meta:
         model = Test_score
         fields = '__all__'
 
 
 class ResultSerializer(ModelSerializer):
+    subject = StringSerializers(many=False)
     test_scores = serializers.SerializerMethodField()
 
     class Meta:
