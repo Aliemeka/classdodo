@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Questions from './Questions'
 
 import * as actions from '../../store/actions/subjects'
+import { submitTest }  from '../../store/actions/records'
 
 import Loader from '../../containers/Loader'
 
@@ -64,6 +65,14 @@ export class TestMain extends Component {
     handleSubmit = e =>{
         e.preventDefault()
         this.setState({ isDone: true })
+        const selectedOptions = this.state.selected
+        const test = {
+            username: this.props.username,
+            subjectId: this.props.subject.id,
+            testId: this.props.test.id,
+            answers: selectedOptions
+        }
+        this.props.submitTest(this.props.token, test)
     }
 
     render() {
@@ -139,6 +148,7 @@ export class TestMain extends Component {
 const mapStateToProps = state =>{
     return{
         token: state.auth.token,
+        username: state.auth.username,
         loading: state.subjects.loading,
         subject: state.subjects.currentSubject,
         test: state.subjects.currentTest
@@ -148,7 +158,8 @@ const mapStateToProps = state =>{
  const mapDispatchToProps = dispatch =>{
     return{
         getSubjectTests: (token, id) => dispatch(actions.getSubjectTests(token, id)),
-        getTest: (token, subjectId, testId) => dispatch(actions.getTestDetails(token, subjectId, testId))
+        getTest: (token, subjectId, testId) => dispatch(actions.getTestDetails(token, subjectId, testId)),
+        submitTest: (token, test) => dispatch(submitTest(token, test)),
     }
 }
 

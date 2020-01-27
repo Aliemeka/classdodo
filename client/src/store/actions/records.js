@@ -162,3 +162,45 @@ export const getTestScores = (token, recordId, resultId) =>{
         })
     }
 }
+
+
+//Begins the authentication process
+const submitTestStart = () =>{
+    return {
+        type: actionTypes.SUBMIT_TEST_START
+    }
+}
+
+
+//Checks if getSubjectListentication was successful then gets the token
+const submitTestSuccess = test =>{
+    return {
+        type: actionTypes.SUBMIT_TEST_SUCCESS,
+        test
+    }
+}
+
+//Checks if there is an error in authentication
+const submitTestFail = error =>{
+    return {
+        type: actionTypes.SUBMIT_TEST_FAIL,
+        error
+    } 
+}
+
+
+export const submitTest = (token, test) =>{
+    return dispatch =>{
+        // dispatch(submitTestStart())
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`
+        }
+        axios.post('http://127.0.0.1:8000/testscore/create/', test).then(res=>{
+            console.log('Success: ', test)    
+        // dispatch(submitTestSuccess())
+        }).catch(err=>{
+            // dispatch(submitTestFail(err))
+        })
+    }
+}
