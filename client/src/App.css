@@ -19,6 +19,12 @@ body{
     padding-bottom: 0 !important;
 }
 
+main{
+    position: relative;
+}
+
+
+
 nav ul{
     list-style: none;
     display: flex;
@@ -110,6 +116,13 @@ footer a, .link{
     background-color: #f8f8f8;
     color: #ffa500;
     font-weight: 600;
+}
+
+.breadcrumb.sp{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .breadcrumb > li + li:before { 

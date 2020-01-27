@@ -1,5 +1,5 @@
 import React, { PureComponent, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import * as actions from '../../store/actions/records'
@@ -41,15 +41,28 @@ export class Results extends PureComponent {
     }
 
     render() {
+        const recordId = this.props.match.params.record_id
+
         const student = this.getExactStudent()
         return (
             <main className="main-area pt-5 pb-5">
+                <ol className="breadcrumb sp">
+                    {
+                        this.props.isStudent ?
+                        <li><NavLink to={`/profile/${recordId}/results`}>Profile</NavLink></li>
+                        :
+                        <Fragment>
+                            <li><NavLink to={`/records`}>Records</NavLink></li>
+                            <li><NavLink to={`/profile/${recordId}/results`}>Results</NavLink></li>
+                        </Fragment>
+                    }
+                </ol>
                 {
                     this.props.loading ?
                     <Loader /> 
                     :
                     <Fragment>
-                        <h1 className="text-center">{student}</h1>
+                        <h1 className="text-center mt-3">{student}</h1>
                         <section className="records-section container bg-light pt-4 pb-4">
                             <div className="row justify-content-center p-2">
                             {
@@ -83,6 +96,7 @@ export class Results extends PureComponent {
 const mapStateToProps = state =>{
     return{
         token: state.auth.token,
+        isStudent: state.auth.is_student,
         results: state.records.results,
         records: state.records.records,
         loading: state.records.loading,

@@ -1,4 +1,5 @@
 import React, { PureComponent, Fragment } from 'react'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
@@ -47,13 +48,31 @@ export class ResultDetails extends PureComponent {
 
     render() {
         const student = this.getExactStudent()
+        const recordId = this.props.match.params.record_id
+        const resultId = this.props.match.params.result_id
+        const subject = this.props.loading ? '....' : this.props.resultDetails.subject !== undefined ?  this.props.resultDetails.subject : '...'
         return (
             <main className="main-area pt-5 pb-5">
+                <ol className="breadcrumb sp">
+                    {
+                        this.props.isStudent ?
+                        <Fragment>
+                            <li><NavLink to={`/profile/${recordId}/results`}>Profile</NavLink></li>
+                            <li><NavLink to={`/profile/${recordId}/results/${resultId}`}>{subject} details</NavLink></li>
+                        </Fragment>
+                        :
+                        <Fragment>
+                            <li><NavLink to={`/records`}>Records</NavLink></li>
+                            <li><NavLink to={`/profile/${recordId}/results`}>Results</NavLink></li>
+                            <li><NavLink to={`/profile/${recordId}/results/${resultId}`}>{subject} details</NavLink></li>
+                        </Fragment>
+                    }
+                </ol>
             {
                 this.props.loading && this.props.resultDetails.id === undefined ?
                 <Loader /> :
                 <Fragment>
-                    <h1 className="text-center">{student}'s details</h1>
+                    <h1 className="text-center mt-3">{student}'s details</h1>
                     <section className="records-section container bg-light pt-4 pb-4">
                         <div className="row justify-content-center p-2">
                             <div className="col-sm-6">
@@ -118,6 +137,7 @@ export class ResultDetails extends PureComponent {
 const mapStateToProps = state =>{
     return{
         token: state.auth.token,
+        isStudent: state.auth.is_student,
         loading: state.result.loading,
         resultDetails: state.result.resultDetails,
         testScores: state.result.testScores,
