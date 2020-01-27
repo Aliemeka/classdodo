@@ -7,10 +7,10 @@ class Subject(models.Model):
     teacher = models.ForeignKey(AppUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.subject_name} by {self.teacher.get_full_name()}'
+        return f'{self.subject_name}'
 
     def __unicode__(self):
-        return f'{self.subject_name} by {self.teacher.get_full_name()}'
+        return f'{self.subject_name}'
 
 
 class Test(models.Model):
