@@ -1,5 +1,5 @@
 # CLASS DODO
-ClassDodo is an open source class management system that helps teachers monitor their student performance
+**ClassDodo** is an open source class management system that helps teachers monitor their student performance
 The application provides students with test questions for each subject. It is ideal for lesson teachers and form teachers. It
 is developed to illustrate how to create an app using microservice archieture that scales.
 
@@ -14,10 +14,11 @@ is developed to illustrate how to create an app using microservice archieture th
 * The main administrator can view all the records and add or remove users
 
 ## Requirements
-**Python v>=3.5**
-**npm v>=6.4.1**
-**npm v>=6.4.1**
-**Python v>=3.5**
+To get started you need the following installed on your local machine<br>
+**Python v>=3.5** <br>
+**npm v>=6.4.1** <br>
+**npm v>=6.4.1** <br>
+**Python v>=3.6**
 
 ## Class Dodo Backend
 Backend developed using Django and django-rest-framework. The backend is hosted on the Backend service on a Docker containers
@@ -42,7 +43,7 @@ in Kubernetes clusters.
 * Open a terminal (bash preferably) from the folder
 * Run <code>virtualenv env</code> to ensure that depencies are up to date
 * Run <code>source env/Scripts/activate</code> for windows users or <code>source env/bin/activate</code> on Mac or Linux
-* Run <code>pip install -r requirements.txt</code> ***Ensure you set the environment on your IDE to use the virtual enviroment***
+* Run <code>pip install -r requirements.txt</code> *Ensure you set the environment on your IDE to use the virtual enviroment*
 * Run <code>python3 manage.py runserver</code>
 
 
@@ -65,28 +66,28 @@ The app using consist of two services; a backend service will contain the django
 
 
 ### FRONTEND DEPLOYMENT
+**Setting up the docker image for the React App**
 * Make your image <code>DP=[YOUR_DOCKER_ID]/[NAME_YOUR_IMAGE:1.0]</code>
 * <code>docker run build</code>
-* Run the 
-docker run -d -p 80:80 $DP
-Login your docker account
-docker login --username=[YOUR_DOCKER_ID]
-docker push $DP
-Connecting to Google Cloud Platform
-Initialize the folder to be a gcloud repo
-gcloud init
-Login using
-gcloud login Or gcloud config auth login
-Choose a project
-gcloud config set project [PROJECT_ID]
-Pick a region
-gcloud config set compute/region [COMPUTE_REGION]
-Deploying on Kubernetes Engine
-Create a container cluster
-gcloud container clusters create [CLUSTER_NAME]
-Create a Kubernetes deployment image
+* Run the command
+<code>docker run -d -p 80:80 $DP</code> run the docker image
+* Login your docker account <code>docker login --username=[YOUR_DOCKER_ID]</code>
+* Push to a remote container repo <code>docker push $DP</code><br>
+
+**Connecting to Google Cloud Platform**
+* Initialize the folder to be a gcloud repo <br> *You will need to have the **Google Cloud SDK** installed on your system*
+* Run <code>gcloud init</code>
+* Login using <code>gcloud login</code> Or <code>gcloud config auth login</code>
+* Choose a project <code>gcloud config set project [PROJECT_ID]</code> <br>
+* Pick a region<br>
+ <code>gcloud config set compute/region [COMPUTE_REGION]</code><br>
+
+**Deploying on Kubernetes Engine**
+* Create a container cluster
+<code>gcloud container clusters create [CLUSTER_NAME]</code>
+* Create a Kubernetes deployment image
 kubectl create deployment [DEPLOYMENT_NAME e.g test] --image $DP
-Expose your deployment
+* Expose your deployment
 kubectl expose deployment [DEPLOYMENT_IMAGE_NAME] --type LoadBalancer --port 80 --target-port 80
 To find the external IP address of your app
 kubectl get services
