@@ -7,10 +7,8 @@ is developed to illustrate how to create an app using microservice archieture th
 
 
 ## Features
-<br>
-<br>
 ![screenshot](https://github.com/Aliemeka/classdodo/blob/master/ClassDodo.png)
-<br>
+
 * Classroom dashbord displaying different subjects with test
 * Teachers can sign up and, create new subjects and create multiple test for each project they've created
 * Students can login and attempt tests in which they are graded and recorded
