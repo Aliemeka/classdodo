@@ -28,9 +28,9 @@ in Kubernetes clusters.
 #### Main dependencies
 * [Django v3](https://docs.djangoproject.com/en/3.0/ "Django") for developing the backend
 * [django-rest-framework](https://www.django-rest-framework.org/ "django-rest-framework") for api configuration
-* [django-rest-auth](https://node-postgres.com/ "django-rest-auth") to enable token and session authentication
-* [django-allauth](https://www.npmjs.com/ "django-allauth") to allow custom user registration and authentication
-* [django-corsheaders](https://www.npmjs.com/package/nodemon "django-corsheaders") to allow the frontend access to api
+* [django-rest-auth](https://django-rest-auth.readthedocs.io/en/latest/ "django-rest-auth") to enable token and session authentication
+* [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html "django-allauth") to allow custom user registration and authentication
+* [django-corsheaders](https://github.com/adamchainz/django-cors-headers "django-corsheaders") to allow the frontend access to api
 
 ### In development
 * In development mode, ensure to set <code>DEGUB=True</code> in <code>settings.py</code>
@@ -99,6 +99,12 @@ When contributing to this repository, please first discuss the change you wish t
 email, or any other method with the owners of this repository before making a change. 
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
+
+### Welcome Additions
+1. Enabling teachers to create assignments
+2. Linking it up with Firestore
+3. Adding enrollments
+4. Feel free to sniff out bugs too
 
 ### Pull Request Process
 1. Ensure any install or build dependencies are removed before the end of the layer when doing a 
