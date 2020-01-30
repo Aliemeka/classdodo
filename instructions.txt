@@ -1,1 +1,7 @@
 https://dev.to/englishcraig/creating-an-app-with-docker-compose-django-and-create-react-app-31lf
+
+https://kirr.co/vvjogo
+
+https://dev.to/briancaffey/setting-up-a-django-project-in-kubernetes-with-minikube-3k8i
+
+https://medium.com/@markgituma/kubernetes-local-to-production-with-django-2-docker-and-minikube-ba843d858817
