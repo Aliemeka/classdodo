@@ -164,29 +164,29 @@ export const getTestScores = (token, recordId, resultId) =>{
 }
 
 
-//Begins the authentication process
-const submitTestStart = () =>{
-    return {
-        type: actionTypes.SUBMIT_TEST_START
-    }
-}
+// //Begins the authentication process
+// const submitTestStart = () =>{
+//     return {
+//         type: actionTypes.SUBMIT_TEST_START
+//     }
+// }
 
 
-//Checks if getSubjectListentication was successful then gets the token
-const submitTestSuccess = test =>{
-    return {
-        type: actionTypes.SUBMIT_TEST_SUCCESS,
-        test
-    }
-}
+// //Checks if getSubjectListentication was successful then gets the token
+// const submitTestSuccess = test =>{
+//     return {
+//         type: actionTypes.SUBMIT_TEST_SUCCESS,
+//         test
+//     }
+// }
 
-//Checks if there is an error in authentication
-const submitTestFail = error =>{
-    return {
-        type: actionTypes.SUBMIT_TEST_FAIL,
-        error
-    } 
-}
+// //Checks if there is an error in authentication
+// const submitTestFail = error =>{
+//     return {
+//         type: actionTypes.SUBMIT_TEST_FAIL,
+//         error
+//     } 
+// }
 
 
 export const submitTest = (token, test) =>{
