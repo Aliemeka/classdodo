@@ -48,12 +48,14 @@ class SubjectSerializer(ModelSerializer):
         teacher = AppUser.objects.get(username=data['teacher'])
         subject = Subject.objects.get_or_create(subject_name=data['subject_name'], teacher=teacher)
         subject = subject[0]
+        subject.teacher = teacher
         subject.save()
 
         for t in data['tests']:
+            testf = Test.objects.filter(subject=subject)
             newTest = Test()
             newTest.test_title = t['test_title']
-            newTest.order = int(t['order'])
+            newTest.order = int(t['order']) + len(testf)
             newTest.subject = subject
             newTest.save()
 
