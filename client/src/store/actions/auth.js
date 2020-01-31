@@ -64,7 +64,7 @@ export const authLogin = (username, password) =>{
             }
             // const token = res.data.key;  //gets authentication key
             // const expirationDate = new Date(new Date().getTime() + 7200 * 1000); //sets expiration time for 2 hour
-            localStorage.setItem('user', user);   //stores token in local storage
+            localStorage.setItem('user', JSON.stringify(user));   //stores token in local storage
             dispatch(authSuccess(user));   //gets token
             dispatch(checkAuthTimeout(7200)); //times out user after 2 hours
         })
