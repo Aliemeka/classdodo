@@ -45,10 +45,9 @@ class SubjectSerializer(ModelSerializer):
         data = request.data
         # print(data)
 
-        subject = Subject()
         teacher = AppUser.objects.get(username=data['teacher'])
-        subject.teacher = teacher
-        subject.subject_name = data['subject_name']
+        subject = Subject.objects.get_or_create(subject_name=data['subject_name'], teacher=teacher)
+        subject = subject[0]
         subject.save()
 
         for t in data['tests']:
