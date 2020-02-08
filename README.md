@@ -1,7 +1,7 @@
 # CLASS DODO
 **ClassDodo** is an open source class management system that helps teachers monitor their student performance
 The application provides students with test questions for each subject. It is ideal for lesson teachers and form teachers. It
-is developed to illustrate how to create an app using microservice archieture that scales.
+is developed to illustrate how to create an app using microservice architecture that scales.
 
 ## Architecture
 
