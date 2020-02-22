@@ -93,7 +93,7 @@ export class Results extends PureComponent {
                                             <div className="card result-card d-flex justify-content-center align-items-center p-3">
                                                 <h3 className="mt-2 mb-3 text-center">{result.subject}</h3>
                                                 <p className="text-bold mb-1">Aggregate:</p>
-                                                <h1 className={`result-heading ${textColor}`}>{result.average_score}%</h1>
+                                                <h1 className={`result-heading ${textColor}`}>{parseInt(result.average_score)}%</h1>
                                                 <p className="mt-1">Success Rate: <span className="text-bold">{result.success_rate}</span></p>
                                                 <Link to={`/profile/${result.record}/results/${result.id}`}><button className="btn btn-md btn-dark mb-1"><i className="icon-view"></i>View Tests</button></Link>
                                             </div>
