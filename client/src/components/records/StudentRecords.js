@@ -27,7 +27,7 @@ class StudentRecords extends PureComponent {
 
     render() {
         return (
-            <main className="main-area pt-5 pb-5">
+        <main className="main-area pt-5 pb-5">
             <h1 className="text-center">All Records</h1>
             {
                 this.props.loading ?
@@ -53,6 +53,7 @@ const mapStateToProps = state =>{
         token: state.auth.token,
         loading: state.records.loading,
         records: state.records.records,
+        isStudent: state.auth.is_student,
         students: state.users.students
     }
  }

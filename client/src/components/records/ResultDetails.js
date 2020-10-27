@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import BreadCrombs from '../../containers/BreadCrombs'
 
 
 import * as actions from '../../store/actions/records'
@@ -51,9 +51,6 @@ export class ResultDetails extends PureComponent {
             case 5:
                 return "A"
                 
-            case 0:
-                return "F"
-                
             case 4:
                 return "B"
                 
@@ -65,6 +62,9 @@ export class ResultDetails extends PureComponent {
                 
             case 1:
                 return "F"
+            
+            case 0:
+                return "F"
                 
         
             default:
@@ -75,8 +75,8 @@ export class ResultDetails extends PureComponent {
     render() {
         const student = this.getExactStudent()
         const recordId = this.props.match.params.record_id
-        const resultId = this.props.match.params.result_id
-        const subject = this.props.loading ? '....' : this.props.resultDetails.subject !== undefined ?  this.props.resultDetails.subject : '...'
+        // const resultId = this.props.match.params.result_id
+        // const subject = this.props.loading ? '....' : this.props.resultDetails.subject !== undefined ?  this.props.resultDetails.subject : '...'
         let textColor = ' '
         if(!this.props.loading){
             if(this.props.resultDetails.average_score !== null && this.props.resultDetails.average_score !== undefined){
@@ -96,21 +96,7 @@ export class ResultDetails extends PureComponent {
         }
         return (
             <main className="main-area pt-5 pb-5">
-                <ol className="breadcrumb sp">
-                    {
-                        this.props.isStudent ?
-                        <Fragment>
-                            <li><NavLink to={`/profile/${recordId}/results`}>Profile</NavLink></li>
-                            <li><NavLink to={`/profile/${recordId}/results/${resultId}`}>{subject} details</NavLink></li>
-                        </Fragment>
-                        :
-                        <Fragment>
-                            <li><NavLink to={`/records`}>Records</NavLink></li>
-                            <li><NavLink to={`/profile/${recordId}/results`}>Results</NavLink></li>
-                            <li><NavLink to={`/profile/${recordId}/results/${resultId}`}>{subject} details</NavLink></li>
-                        </Fragment>
-                    }
-                </ol>
+            <BreadCrombs recordId={recordId} isStudent={this.props.isStudent}/>
             {
                 this.props.loading && this.props.resultDetails.id === undefined ?
                 <Loader /> :
