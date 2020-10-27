@@ -7,10 +7,10 @@ class Record(models.Model):
     student = models.OneToOneField(AppUser, on_delete=models.CASCADE, related_name='record')
 
     def __str__(self):
-        return "%s's record" %(self.student.first_name)
+        return f"{self.student.first_name}'s record"
 
     def __unicode__(self):
-        return "%s's record" %(self.student.first_name)
+        return f"{self.student.first_name}'s record"
 
 class Result(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
@@ -19,10 +19,10 @@ class Result(models.Model):
     success_rate = models.IntegerField(default=0)
 
     def __str__(self):
-        return '%s result: %f' %(self.subject.subject_name, self.average_score)
+        return f'{self.subject.subject_name} result: {self.average_score}'
 
     def __unicode__(self):
-        return '%s result: %f' %(self.subject.subject_name, self.average_score)
+        return f'{self.subject.subject_name} result: {self.average_score}'
 
 
 class Test_score(models.Model):
@@ -31,7 +31,7 @@ class Test_score(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
     def __str__(self):
-        return 'score aggregate: %d' %(self.score)
+        return f'score aggregate: {self.score}'
 
     def __unicode__(self):
-        return 'score aggregate: %d' %(self.score)
+        return f'score aggregate: {self.score}'
