@@ -1,4 +1,6 @@
 import os
+import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -6,9 +8,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd1b7sr^4aj1u2&bc0+mb-qumyk8n8v)o!4=e2t(&grty*7h3h!'
 
 
-DEBUG = True #Change to False to run in production
+DEBUG = False #Change to False to run in production
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://classdodo.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -73,8 +75,8 @@ WSGI_APPLICATION = 'classdodbk.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ciba',
     }
 }
 
@@ -129,7 +131,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
 
 
 CSRF_COOKIE_NAME = 'csrftoken'
