@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env.str("SECRET_KEY")
 
 
-DEBUG = False #Change to False to run in production
+DEBUG = False #Change to False to run in production and True for development
 
 ALLOWED_HOSTS = ['https://classdodo.herokuapp.com', '127.0.0.1:8000']
 
