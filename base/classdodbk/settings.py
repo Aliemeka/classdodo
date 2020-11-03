@@ -3,6 +3,7 @@ import dj_database_url
 import django_heroku
 import environ
 
+# Activate environment variable reading
 env = environ.Env()
 environ.Env.read_env()
 
