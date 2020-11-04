@@ -32,7 +32,7 @@ export const getSubjects = token =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get('http://127.0.0.1:8000/classroom/').then(res=>{
+        axios.get('https://classdodo.herokuapp.com/classroom/').then(res=>{
             const subjects = res.data;
             dispatch(getSubjectsSuccess(subjects))
         }).catch(err=>{
@@ -73,7 +73,7 @@ export const createSubject = (token, subject) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.post('http://127.0.0.1:8000/classroom/', subject).then(res=>{
+        axios.post('https://classdodo.herokuapp.com/classroom/', subject).then(res=>{
             dispatch(createSubjectSuccess())
         }).catch(err=>{
             dispatch(createSubjectFail(err))
@@ -113,7 +113,7 @@ export const getSubjectTests = (token, id) =>{
             Authorization: `Token ${token}`
         }
         if(id!=='record'){
-            axios.get(`http://127.0.0.1:8000/classroom/${id}/`).then(res=>{
+            axios.get(`https://classdodo.herokuapp.com/classroom/${id}/`).then(res=>{
                 const subject = res.data;
                 dispatch(getSubjectTestsSuccess(subject))
             }).catch(err=>{
@@ -155,7 +155,7 @@ export const getTestDetails = (token, subjectId, testOrder) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get(`http://127.0.0.1:8000/classroom/${subjectId}/`).then(res=>{
+        axios.get(`https://classdodo.herokuapp.com/classroom/${subjectId}/`).then(res=>{
             const tests = res.data.tests;
             const test = tests[testOrder-1]
             dispatch(getTestDetailsSuccess(test))

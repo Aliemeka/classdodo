@@ -88,7 +88,7 @@ export const getUsers = token =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get('http://127.0.0.1:8000/users/').then(res=>{
+        axios.get('https://classdodo.herokuapp.com/users/').then(res=>{
             const users = res.data;
             dispatch(getUsersSuccess(users))
         }).catch(err=>{
@@ -105,7 +105,7 @@ export const getTeachers = token =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get('http://127.0.0.1:8000/users/').then(res=>{
+        axios.get('https://classdodo.herokuapp.com/users/').then(res=>{
             const users = res.data;
             const teachers = users.filter(user => user.is_teacher)
             dispatch(getTeachersSuccess(teachers))
@@ -123,7 +123,7 @@ export const getStudents = token =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get('http://127.0.0.1:8000/users/').then(res=>{
+        axios.get('https://classdodo.herokuapp.com/users/').then(res=>{
             const users = res.data;
             const students = users.filter(user => user.is_student)
             dispatch(getStudentsSuccess(students))

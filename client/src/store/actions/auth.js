@@ -46,7 +46,7 @@ export const checkAuthTimeout = expTime =>{
 export const authLogin = (username, password) =>{
     return dispatch => {
         dispatch(authStart()); //begins authentication process
-        axios.post('http://127.0.0.1:8000/rest-auth/login/', { //post creditials to the server
+        axios.post('https://classdodo.herokuapp.com/rest-auth/login/', { //post creditials to the server
             username: username,
             password: password
         }).then(res => {
@@ -88,7 +88,7 @@ export const authSignUp = (first_name, last_name, username, email, password1, pa
             is_student,
             is_teacher
         }
-        axios.post('http://127.0.0.1:8000/rest-auth/registration/', user)
+        axios.post('https://classdodo.herokuapp.com/rest-auth/registration/', user)
         .then(res => {
             const user = {
                 token: res.data.key,

@@ -32,7 +32,7 @@ export const getRecords = token =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get('http://127.0.0.1:8000/records/').then(res=>{
+        axios.get('https://classdodo.herokuapp.com/records/').then(res=>{
             const records = res.data
             dispatch(getRecordsSuccess(records))
         }).catch(err=>{
@@ -72,7 +72,7 @@ export const getResults = (token, recordId) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get(`http://127.0.0.1:8000/records/${recordId}/results/`).then(res=>{
+        axios.get(`https://classdodo.herokuapp.com/records/${recordId}/results/`).then(res=>{
             const results = res.data
             dispatch(getResultsSuccess(results))
         }).catch(err=>{
@@ -113,7 +113,7 @@ export const getResultDetails = (token, recordId, resultId) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get(`http://127.0.0.1:8000/records/${recordId}/results/${resultId}/`).then(res=>{
+        axios.get(`https://classdodo.herokuapp.com/records/${recordId}/results/${resultId}/`).then(res=>{
             const resultDetails = res.data
             dispatch(getResultDetailsSuccess(resultDetails))
         }).catch(err=>{
@@ -154,7 +154,7 @@ export const getTestScores = (token, recordId, resultId) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.get(`http://127.0.0.1:8000/records/${recordId}/results/${resultId}/tests/`).then(res=>{
+        axios.get(`https://classdodo.herokuapp.com/records/${recordId}/results/${resultId}/tests/`).then(res=>{
             const testScores = res.data
             dispatch(getTestScoresSuccess(testScores))
         }).catch(err=>{
@@ -196,7 +196,7 @@ export const submitTest = (token, test) =>{
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`
         }
-        axios.post('http://127.0.0.1:8000/testscore/create/', test).then(res=>{
+        axios.post('https://classdodo.herokuapp.com/testscore/create/', test).then(res=>{
             console.log('Success: ', test)    
         // dispatch(submitTestSuccess())
         }).catch(err=>{
